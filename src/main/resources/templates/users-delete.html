@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>World_Of_Tanks Application</title>
+
+    <th:block th:include="~{fragments/head}"/>
+
+</head>
+<body class="body-main">
+<header th:include="fragments/navigation">
+
+</header>
+<main role="main">
+    <div class="jumbotron">
+        <div class="container text-light ">
+            <h1 class="display-3 ">
+                <strong class="bg-blur rounded border-white pl-3 font-weight-bold">Delete User</strong></h1>
+        </div>
+        <div class="container bg-blur rounded p-5 mt-5 w-75">
+            <form th:action="@{/users/delete}"
+                  th:method="post"
+                  th:object="${deleteUserDTO}"
+
+                  class=" text-center text-light">
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Type the user username you want to
+                        delete</label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{username}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="username"
+                               aria-describedby="usernameHelpInline" placeholder="username">
+                        <small id="usernameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Username must be between 3 and 10 characters.
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="btn btn-danger w-50">Delete the User</button>
+            </form>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

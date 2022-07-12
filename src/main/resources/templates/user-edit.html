@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>World_Of_Tanks Application</title>
+
+    <th:block th:include="~{fragments/head}"/>
+
+</head>
+<body class="body-main">
+<header th:include="fragments/navigation">
+
+</header>
+<main role="main">
+    <div class="jumbotron">
+        <div class="container text-light ">
+            <h1 class="display-3 ">
+                <strong class="bg-blur rounded border-white pl-3 font-weight-bold">Edit User</strong></h1>
+        </div>
+        <div class="container bg-blur rounded p-5 mt-5 w-75">
+            <form th:action="@{/users/edit}"
+                  th:method="post"
+                  th:object="${editUserDTO}"
+
+                  class=" text-center text-light">
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Type in the old username of the user
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{oldUsername}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="username"
+                               aria-describedby="nameHelpInline" placeholder="username">
+                        <small id="usernameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Username must be between 3 and 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Type in the new username of the user
+                    </label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{newUsername}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="new username"
+                               aria-describedby="nameHelpInline" placeholder="new username">
+                        <small id="newUsernameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Username must be between 3 and 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fullName" class="col-sm-2 col-form-label">Set the new user full name!</label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{fullName}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="full name"
+                               aria-describedby="nameHelpInline" placeholder="full name">
+                        <small id="fullNameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Full Name must be between 5 and 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Set the new user password!</label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{password}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="password"
+                               aria-describedby="passwordHelpInline" placeholder="password">
+                        <small id="passwordNameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Password must be at least 3 symbols
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-50">Edit the User</button>
+            </form>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

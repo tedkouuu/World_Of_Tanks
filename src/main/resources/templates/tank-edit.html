@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>World_Of_Tanks Application</title>
+
+    <th:block th:include="~{fragments/head}"/>
+
+</head>
+<body class="body-main">
+<header th:include="fragments/navigation">
+
+</header>
+<main role="main">
+    <div class="jumbotron">
+        <div class="container text-light ">
+            <h1 class="display-3 ">
+                <strong class="bg-blur rounded border-white pl-3 font-weight-bold">Edit Tank</strong></h1>
+        </div>
+        <div class="container bg-blur rounded p-5 mt-5 w-75">
+            <form th:action="@{/tank/edit}"
+                  th:method="post"
+                  th:object="${editTankDTO}"
+
+                  class=" text-center text-light">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Type in the name of the tank you want to make changes</label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               th:field="*{name}"
+                               th:errorclass="is-invalid"
+                               class="form-control" id="name"
+                               aria-describedby="nameHelpInline" placeholder="Name">
+                        <small id="nameHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            Name must be between 2 and 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="power" class="col-sm-2 col-form-label">Set the new power</label>
+                    <div class="col-sm-10">
+                        <input type="number"
+                               th:field="*{power}"
+                               th:errorclass="is-invalid"
+                               step="1" class="form-control" id="power"
+                               aria-describedby="powerHelpInline">
+                        <small id="powerHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            The power must be positive.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="health" class="col-sm-2 col-form-label">Set the new health</label>
+                    <div class="col-sm-10">
+                        <input type="number"
+                               th:field="*{health}"
+                               th:errorclass="is-invalid"
+                               step="1" class="form-control" id="health"
+                               aria-describedby="healthHelpInline">
+                        <small id="healthHelpInline" class="bg-danger text-light rounded invalid-feedback">
+                            The health must be positive.
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger w-50">Edit the Tank</button>
+            </form>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>
