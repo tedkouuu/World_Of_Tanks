@@ -20,12 +20,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
+    private final EmailService emailService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, EmailService emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepository = userRoleRepository;
-
+        this.emailService = emailService;
     }
 
 
@@ -57,19 +58,28 @@ public class UserService {
 
         this.userRepository.save(user);
 
+        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+
         return true;
     }
 
 
     public boolean editUser(EditUserDTO editUserDTO) {
 
-        Optional<UserEntity> user = this.userRepository.findByUsername(editUserDTO.getOldUsername());
+        Optional<UserEntity> oldUser = this.userRepository.findByUsername(editUserDTO.getOldUsername());
 
-        if (user.isEmpty()) {
+        if (oldUser.isEmpty()) {
             return false;
         }
 
-        UserEntity entityToEdit = user.get();
+        Optional<UserEntity> checkUser = this.userRepository.findByUsername(editUserDTO.getNewUsername());
+
+        if (checkUser.isPresent()) {
+            return false;
+        }
+
+
+        UserEntity entityToEdit = oldUser.get();
 
         entityToEdit.setFullName(editUserDTO.getFullName()).setPassword(passwordEncoder.encode(editUserDTO.getPassword()))
                 .setUsername(editUserDTO.getNewUsername());

@@ -13,7 +13,7 @@ public class UserRoleEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private UserRoleEnum userRole;
 
     public Long getId() {

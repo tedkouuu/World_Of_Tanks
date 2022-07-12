@@ -24,7 +24,7 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles;
 
     public UserEntity() {
