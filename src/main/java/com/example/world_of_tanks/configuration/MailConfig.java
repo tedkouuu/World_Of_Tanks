@@ -1,4 +1,4 @@
-﻿package com.example.world_of_tanks.configuration;
+package com.example.world_of_tanks.configuration;
 
 import org.hibernate.validator.spi.nodenameprovider.Property;
 import org.springframework.beans.factory.annotation.Value;

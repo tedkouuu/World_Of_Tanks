@@ -1,4 +1,4 @@
-﻿package com.example.world_of_tanks.services;
+package com.example.world_of_tanks.services;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
