@@ -11,10 +11,10 @@ import com.example.world_of_tanks.models.enums.CategoryEnum;
 import com.example.world_of_tanks.repositories.CategoryRepository;
 import com.example.world_of_tanks.repositories.TankRepository;
 import com.example.world_of_tanks.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,12 +26,14 @@ public class TankService {
     private final TankRepository tankRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
 
-    public TankService(TankRepository tankRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
+    public TankService(TankRepository tankRepository, CategoryRepository categoryRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.tankRepository = tankRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
     public boolean addTank(AddTankDTO addTankDTO, UserDetails userDetails) {
@@ -49,13 +51,22 @@ public class TankService {
         UserEntity user = userRepository.findByUsername(userDetails.getUsername()).
                 orElseThrow();
 
-        Tank tankToSave = new Tank().
-                setHealth(addTankDTO.getHealth()).
-                setPower(addTankDTO.getPower()).setName(addTankDTO.getName())
-                .setCreated(addTankDTO.getCreated());
-        tankToSave.setCategory(category).setUser(user);
+        Tank tankModelMapper = modelMapper.map(addTankDTO, Tank.class);
 
-        this.tankRepository.save(tankToSave);
+        tankModelMapper.setUser(user);
+
+        tankModelMapper.setCategory(category);
+
+
+        // Ако model mapper не работи, мога винаги да си ползвам сетъри!
+
+//        Tank tankToSave = new Tank().
+//                setHealth(addTankDTO.getHealth()).
+//                setPower(addTankDTO.getPower()).setName(addTankDTO.getName())
+//                .setCreated(addTankDTO.getCreated());
+//        tankToSave.setCategory(category).setUser(user);
+
+        this.tankRepository.save(tankModelMapper);
 
         return true;
 

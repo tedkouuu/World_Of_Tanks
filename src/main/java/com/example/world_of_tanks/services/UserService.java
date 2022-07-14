@@ -52,13 +52,15 @@ public class UserService {
 
         UserRoleEntity role = this.userRoleRepository.findByUserRole(userRoleEnum);
 
+        // Трябв ми custom converter за да мога да преобразувам от registerDTO, в UserEntity
+
         UserEntity user = new UserEntity().setEmail(registerDTO.getEmail()).setRoles(List.of(role))
                 .setUsername(registerDTO.getUsername()).setPassword(passwordEncoder.encode(registerDTO.getPassword()))
                 .setFullName(registerDTO.getFullName());
 
         this.userRepository.save(user);
 
-     //   emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
 
         return true;
     }
