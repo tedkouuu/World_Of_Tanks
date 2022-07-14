@@ -15,15 +15,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 @Service
 public class TankService {
 
-    private static final int EXTRA_HP_EVERY_DAY = 100;
     private final TankRepository tankRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
@@ -49,8 +47,7 @@ public class TankService {
 
         Category category = this.categoryRepository.findByName(categoryEnum);
 
-        UserEntity user = userRepository.findByUsername(userDetails.getUsername()).
-                orElseThrow();
+        UserEntity user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow();
 
         Tank tankModelMapper = modelMapper.map(addTankDTO, Tank.class);
 
@@ -84,8 +81,7 @@ public class TankService {
 
         Tank tankToEdit = tank.get();
 
-        tankToEdit.setHealth(editTankDTO.getHealth())
-                .setPower(editTankDTO.getPower());
+        tankToEdit.setHealth(editTankDTO.getHealth()).setPower(editTankDTO.getPower());
 
         tankRepository.save(tankToEdit);
 
@@ -108,46 +104,65 @@ public class TankService {
         return true;
     }
 
-    // TODO: I CAN USE MODEL MAPPER HERE
+
     public List<TankDTO> getTanksOwnedBy(String ownerUsername) {
 
-        return this.tankRepository.findByUserUsername(ownerUsername)
-                .stream().map(TankDTO::new).
-                collect(Collectors.toList());
+        List<TankDTO> ownedTanks = new ArrayList<>();
+
+        List<Tank> tanks = this.tankRepository.findByUserUsername(ownerUsername);
+
+        for (Tank tank : tanks) {
+
+            TankDTO tankDto = modelMapper.map(tank, TankDTO.class);
+
+            ownedTanks.add(tankDto);
+        }
+
+        return ownedTanks;
 
     }
 
-    // TODO: I CAN USE MODEL MAPPER HERE
+
     public List<TankDTO> getTanksOwnedByNot(String noOwnerUsername) {
 
-        return this.tankRepository.findByUserUsernameNot(noOwnerUsername)
-                .stream().map(TankDTO::new).
-                collect(Collectors.toList());
+        List<TankDTO> enemyTanks = new ArrayList<>();
+
+        List<Tank> tanks = this.tankRepository.findByUserUsernameNot(noOwnerUsername);
+
+        for (Tank tank : tanks) {
+
+            TankDTO tankDto = modelMapper.map(tank, TankDTO.class);
+
+            enemyTanks.add(tankDto);
+        }
+
+        return enemyTanks;
     }
 
 
-    // TODO: I CAN USE MODEL MAPPER HERE
     public List<TankDTO> getAllSorted() {
 
-        return this.tankRepository.findByOrderByHealthDesc()
-                .stream().map(TankDTO::new).
-                collect(Collectors.toList());
+        List<TankDTO> sortedTanks = new ArrayList<>();
+
+        List<Tank> tanks = this.tankRepository.findByOrderByHealthDesc();
+
+        for (Tank tank : tanks) {
+
+            TankDTO tankDto = modelMapper.map(tank, TankDTO.class);
+
+            sortedTanks.add(tankDto);
+        }
+
+        return sortedTanks;
     }
 
-    public void giveHpToAllTanks() {
+    public List<Tank> findAll() {
 
-        List<Tank> allTanks = this.tankRepository.findAll();
+        return this.tankRepository.findAll();
+    }
 
-        if (allTanks.isEmpty()) {
-            return;
-        }
+    public void save(Tank tank) {
 
-        for (Tank tank : allTanks) {
-
-            tank.setHealth(tank.getHealth() + EXTRA_HP_EVERY_DAY);
-
-            this.tankRepository.save(tank);
-
-        }
+        this.tankRepository.save(tank);
     }
 }

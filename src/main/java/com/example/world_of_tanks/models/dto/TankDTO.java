@@ -5,6 +5,9 @@ import com.example.world_of_tanks.models.Tank;
 
 public class TankDTO {
 
+    public TankDTO() {
+    }
+
     private long id;
 
     private String name;
@@ -39,5 +42,23 @@ public class TankDTO {
         return name;
     }
 
+    public TankDTO setId(long id) {
+        this.id = id;
+        return this;
+    }
 
+    public TankDTO setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public TankDTO setHealth(long health) {
+        this.health = health;
+        return this;
+    }
+
+    public TankDTO setPower(long power) {
+        this.power = power;
+        return this;
+    }
 }
