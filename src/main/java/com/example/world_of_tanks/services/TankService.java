@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @Service
 public class TankService {
 
+    private static final int EXTRA_HP_EVERY_DAY = 100;
     private final TankRepository tankRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
@@ -107,6 +108,7 @@ public class TankService {
         return true;
     }
 
+    // TODO: I CAN USE MODEL MAPPER HERE
     public List<TankDTO> getTanksOwnedBy(String ownerUsername) {
 
         return this.tankRepository.findByUserUsername(ownerUsername)
@@ -115,6 +117,7 @@ public class TankService {
 
     }
 
+    // TODO: I CAN USE MODEL MAPPER HERE
     public List<TankDTO> getTanksOwnedByNot(String noOwnerUsername) {
 
         return this.tankRepository.findByUserUsernameNot(noOwnerUsername)
@@ -123,10 +126,28 @@ public class TankService {
     }
 
 
+    // TODO: I CAN USE MODEL MAPPER HERE
     public List<TankDTO> getAllSorted() {
 
         return this.tankRepository.findByOrderByHealthDesc()
                 .stream().map(TankDTO::new).
                 collect(Collectors.toList());
+    }
+
+    public void giveHpToAllTanks() {
+
+        List<Tank> allTanks = this.tankRepository.findAll();
+
+        if (allTanks.isEmpty()) {
+            return;
+        }
+
+        for (Tank tank : allTanks) {
+
+            tank.setHealth(tank.getHealth() + EXTRA_HP_EVERY_DAY);
+
+            this.tankRepository.save(tank);
+
+        }
     }
 }
