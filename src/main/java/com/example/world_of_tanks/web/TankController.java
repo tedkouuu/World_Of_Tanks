@@ -3,6 +3,7 @@ package com.example.world_of_tanks.web;
 import com.example.world_of_tanks.models.dto.AddTankDTO;
 import com.example.world_of_tanks.models.dto.DeleteTankDTO;
 import com.example.world_of_tanks.models.dto.EditTankDTO;
+import com.example.world_of_tanks.models.dto.EditUserTankDTO;
 import com.example.world_of_tanks.services.TankService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,6 +35,11 @@ public class TankController {
         return new EditTankDTO();
     }
 
+    @ModelAttribute("editUserTankDTO")
+    public EditUserTankDTO editUserTankAddModel() {
+        return new EditUserTankDTO();
+    }
+
     @ModelAttribute("deleteTankDTO")
     public DeleteTankDTO deleteTankAddModel() {
         return new DeleteTankDTO();
@@ -46,8 +52,7 @@ public class TankController {
     }
 
     @PostMapping("/tank/add")
-    public String addShip(@Valid AddTankDTO addTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                          @AuthenticationPrincipal UserDetails userDetails) {
+    public String addShip(@Valid AddTankDTO addTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
 
 
         if (bindingResult.hasErrors() || !this.tankService.addTank(addTankDTO, userDetails)) {
@@ -80,6 +85,27 @@ public class TankController {
         this.tankService.editTank(editTankDTO);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/user/role/tank/edit")
+    public String getUserTankEdit() {
+        return "user-tank-edit";
+    }
+
+    @PostMapping("/user/role/tank/edit")
+    public String edit(@Valid EditUserTankDTO editUserTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
+
+        if (bindingResult.hasErrors() || !this.tankService.editUserTank(editUserTankDTO, userDetails)) {
+            redirectAttributes.addFlashAttribute("editUserTankDTO", editUserTankDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editUserTankDTO", bindingResult);
+
+            return "redirect:/user/role/tank/edit";
+        }
+
+        this.tankService.editUserTank(editUserTankDTO, userDetails);
+
+        return "redirect:/";
+
     }
 
     @GetMapping("/tank/delete")

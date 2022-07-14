@@ -3,10 +3,7 @@ package com.example.world_of_tanks.services;
 import com.example.world_of_tanks.models.Category;
 import com.example.world_of_tanks.models.Tank;
 import com.example.world_of_tanks.models.UserEntity;
-import com.example.world_of_tanks.models.dto.AddTankDTO;
-import com.example.world_of_tanks.models.dto.DeleteTankDTO;
-import com.example.world_of_tanks.models.dto.EditTankDTO;
-import com.example.world_of_tanks.models.dto.TankDTO;
+import com.example.world_of_tanks.models.dto.*;
 import com.example.world_of_tanks.models.enums.CategoryEnum;
 import com.example.world_of_tanks.repositories.CategoryRepository;
 import com.example.world_of_tanks.repositories.TankRepository;
@@ -165,4 +162,41 @@ public class TankService {
 
         this.tankRepository.save(tank);
     }
+
+
+    public boolean editUserTank(EditUserTankDTO editUserTankDTO, UserDetails userDetails) {
+
+        List<Tank> allUserTanks = this.tankRepository.findByUserUsername(userDetails.getUsername());
+
+        Optional<Tank> tank = this.tankRepository.findByName(editUserTankDTO.getOldName());
+
+        if (allUserTanks.isEmpty() || tank.isEmpty()) {
+
+            return false;
+        }
+
+        if (!allUserTanks.contains(tank.get())) {
+
+            return false;
+        }
+
+        Tank tankToSet = tank.get();
+
+        tankToSet.setName(editUserTankDTO.getNewName());
+
+        this.tankRepository.save(tankToSet);
+
+        return true;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

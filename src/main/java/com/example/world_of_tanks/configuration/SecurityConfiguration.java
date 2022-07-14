@@ -37,6 +37,8 @@ public class SecurityConfiguration {
                 // everyone can login and register
                         antMatchers("/", "/users/login", "/users/register").permitAll().
                 antMatchers("/tanks/battle").authenticated().
+                antMatchers("/users/tank/edit").hasRole(UserRoleEnum.USER.name()).
+                antMatchers("/user/role/tank/edit").hasRole(UserRoleEnum.USER.name()).
                 // pages available only for admins
                         antMatchers("/pages/admins", "/tanks/add", "/tank/edit", "/tank/delete", "/users/edit", "/users/delete").hasRole(UserRoleEnum.ADMIN.name()).
                 // all other pages are available for logger in users

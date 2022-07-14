@@ -8,7 +8,7 @@
             <th:block>
 
                 <li class="nav-item active" sec:authorize="isAnonymous()">
-                    <a class="nav-link" th:text="#{navbar_home}"  href="/">Home</a>
+                    <a class="nav-link" th:text="#{navbar_home}" href="/">Home</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" th:text="#{navbar_login}" href="/users/login">Login</a>
@@ -28,7 +28,7 @@
                             !
                         </div>
                         <form th:action="@{/users/logout}" th:method="post">
-                            <input class="btn btn-link nav-link"  type="submit" value="Logout">
+                            <input class="btn btn-link nav-link" type="submit" value="Logout">
                         </form>
                     </div>
                 </li>
@@ -42,6 +42,7 @@
                     <a class="nav-link" th:text="#{navbar_edit_users}" href="/users/edit">Edit Users</a>
                 </li>
 
+
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:text="#{navbar_delete_users}" href="/users/delete">Delete Users</a>
                 </li>
@@ -52,6 +53,11 @@
 
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:text="#{navbar_edit_tank}" href="/tank/edit">Edit Tanks</a>
+                </li>
+
+
+                <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:text="#{navbar_edit_tank}" href="/user/role/tank/edit">Edit Tanks</a>
                 </li>
 
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
