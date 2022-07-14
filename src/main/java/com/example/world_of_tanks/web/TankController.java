@@ -1,6 +1,5 @@
 package com.example.world_of_tanks.web;
 
-import com.example.world_of_tanks.models.UserRoleEntity;
 import com.example.world_of_tanks.models.dto.AddTankDTO;
 import com.example.world_of_tanks.models.dto.DeleteTankDTO;
 import com.example.world_of_tanks.models.dto.EditTankDTO;

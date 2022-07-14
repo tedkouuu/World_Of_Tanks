@@ -6,16 +6,18 @@ import com.example.world_of_tanks.models.UserEntity;
 import com.example.world_of_tanks.models.dto.AddTankDTO;
 import com.example.world_of_tanks.models.dto.DeleteTankDTO;
 import com.example.world_of_tanks.models.dto.EditTankDTO;
+import com.example.world_of_tanks.models.dto.TankDTO;
 import com.example.world_of_tanks.models.enums.CategoryEnum;
 import com.example.world_of_tanks.repositories.CategoryRepository;
 import com.example.world_of_tanks.repositories.TankRepository;
 import com.example.world_of_tanks.repositories.UserRepository;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -92,5 +94,28 @@ public class TankService {
         tankRepository.delete(tankToEdit);
 
         return true;
+    }
+
+    public List<TankDTO> getTanksOwnedBy(String ownerUsername) {
+
+        return this.tankRepository.findByUserUsername(ownerUsername)
+                .stream().map(TankDTO::new).
+                collect(Collectors.toList());
+
+    }
+
+    public List<TankDTO> getTanksOwnedByNot(String noOwnerUsername) {
+
+        return this.tankRepository.findByUserUsernameNot(noOwnerUsername)
+                .stream().map(TankDTO::new).
+                collect(Collectors.toList());
+    }
+
+
+    public List<TankDTO> getAllSorted() {
+
+        return this.tankRepository.findByOrderByHealthDesc()
+                .stream().map(TankDTO::new).
+                collect(Collectors.toList());
     }
 }

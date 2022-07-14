@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 public class WorldOfTanksDetailsService implements UserDetailsService {
 
@@ -20,31 +21,16 @@ public class WorldOfTanksDetailsService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        return userRepository.
-                findByUsername(username).
-                map(this::map).
-                orElseThrow(() -> new UsernameNotFoundException("User with email " + username + " not found!"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).map(this::map).orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found!"));
     }
 
     private UserDetails map(UserEntity userEntity) {
-        return
-                User.builder().
-                        username(userEntity.getUsername()).
-                        password(userEntity.getPassword()).
-                        authorities(userEntity.
-                                getRoles().
-                                stream().
-                                map(this::map).
-                                toList()).
-                        build();
+        return User.builder().username(userEntity.getUsername()).password(userEntity.getPassword()).authorities(userEntity.getRoles().stream().map(this::map).toList()).build();
     }
 
     private GrantedAuthority map(UserRoleEntity userRole) {
-        return new SimpleGrantedAuthority("ROLE_" +
-                userRole.
-                        getUserRole().name());
+        return new SimpleGrantedAuthority("ROLE_" + userRole.getUserRole().name());
     }
 }
 
