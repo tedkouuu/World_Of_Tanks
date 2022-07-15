@@ -63,6 +63,10 @@
                 <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:text="#{navbar_delete_tank}" href="/tank/delete">Delete Tanks</a>
                 </li>
+
+                <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:text="#{navbar_delete_tank}" href="/user/tank/delete">Delete Tanks</a>
+                </li>
             </th:block>
 
             <li class="nav-item">

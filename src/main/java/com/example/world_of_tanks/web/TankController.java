@@ -1,9 +1,6 @@
 package com.example.world_of_tanks.web;
 
-import com.example.world_of_tanks.models.dto.AddTankDTO;
-import com.example.world_of_tanks.models.dto.DeleteTankDTO;
-import com.example.world_of_tanks.models.dto.EditTankDTO;
-import com.example.world_of_tanks.models.dto.EditUserTankDTO;
+import com.example.world_of_tanks.models.dto.*;
 import com.example.world_of_tanks.services.TankService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +40,11 @@ public class TankController {
     @ModelAttribute("deleteTankDTO")
     public DeleteTankDTO deleteTankAddModel() {
         return new DeleteTankDTO();
+    }
+
+    @ModelAttribute("deleteUserTankDTO")
+    public DeleteUserTankDTO deleteOwnedTank() {
+        return new DeleteUserTankDTO();
     }
 
     @GetMapping("/tank/add")
@@ -124,6 +126,26 @@ public class TankController {
         }
 
         this.tankService.deleteTank(deleteTankDTO);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/user/tank/delete")
+    public String getUserDelete() {
+        return "user-role-tank-delete";
+    }
+
+    @PostMapping("/user/tank/delete")
+    public String deleteUserTank(@Valid DeleteUserTankDTO deleteUserTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
+
+        if (bindingResult.hasErrors() || !this.tankService.deleteUserTank(deleteUserTankDTO, userDetails)) {
+            redirectAttributes.addFlashAttribute("deleteUserTankDTO", deleteUserTankDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.deleteUserTankDTO", bindingResult);
+
+            return "redirect:/user/tank/delete";
+        }
+
+        this.tankService.deleteUserTank(deleteUserTankDTO, userDetails);
 
         return "redirect:/";
     }

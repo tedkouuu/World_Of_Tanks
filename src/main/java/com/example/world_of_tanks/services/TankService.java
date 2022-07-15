@@ -188,6 +188,29 @@ public class TankService {
 
         return true;
     }
+
+    public boolean deleteUserTank(DeleteUserTankDTO deleteUserTankDTO, UserDetails userDetails) {
+
+        List<Tank> allUserTanks = this.tankRepository.findByUserUsername(userDetails.getUsername());
+
+        Optional<Tank> tank = this.tankRepository.findByName(deleteUserTankDTO.getName());
+
+        if (allUserTanks.isEmpty() || tank.isEmpty()) {
+
+            return false;
+        }
+
+        if (!allUserTanks.contains(tank.get())) {
+
+            return false;
+        }
+
+
+        this.tankRepository.delete(tank.get());
+
+        return true;
+
+    }
 }
 
 
