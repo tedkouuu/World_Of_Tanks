@@ -86,8 +86,7 @@ public class UserService {
 
         UserEntity entityToEdit = oldUser.get();
 
-        entityToEdit.setFullName(editUserDTO.getFullName()).setPassword(passwordEncoder.encode(editUserDTO.getPassword()))
-                .setUsername(editUserDTO.getNewUsername());
+        entityToEdit.setFullName(editUserDTO.getFullName()).setPassword(passwordEncoder.encode(editUserDTO.getPassword())).setUsername(editUserDTO.getNewUsername());
 
         this.userRepository.save(entityToEdit);
 
@@ -108,5 +107,7 @@ public class UserService {
         return true;
 
     }
+
+
 }
 
