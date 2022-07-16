@@ -68,7 +68,6 @@ public class UserService {
         return true;
     }
 
-
     public boolean editUser(EditUserDTO editUserDTO) {
 
         Optional<UserEntity> oldUser = this.userRepository.findByUsername(editUserDTO.getOldUsername());
@@ -82,7 +81,6 @@ public class UserService {
         if (checkUser.isPresent()) {
             return false;
         }
-
 
         UserEntity entityToEdit = oldUser.get();
 
@@ -108,6 +106,37 @@ public class UserService {
 
     }
 
+    //    МЕТОД ЗА АВТМОМАТИЧЕН LOGIN СЛЕД РЕГИСТРАЦИЯ:
 
+//        public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
+//
+//        UserEntity newUser = modelMapper.map(userRegisterDTO,UserEntity.class);
+//        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+
+//        UserRoleEntity role = this.userRoleRepository.findByUserRole(userRoleEnum);
+//
+//        user.setRoles(List.of(role));
+//
+//        this.userRepository.save(user);
+//
+//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+//    }
+//
+//
+//    private void login(UserEntity userEntity) {
+//        UserDetails userDetails =
+//                userDetailsService.loadUserByUsername(userEntity.getUsername());
+//
+//        Authentication auth =
+//                new UsernamePasswordAuthenticationToken(
+//                        userDetails,
+//                        userDetails.getPassword(),
+//                        userDetails.getAuthorities()
+//                );
+//
+//        SecurityContextHolder.
+//                getContext().
+//                setAuthentication(auth);
+//    }
 }
 
