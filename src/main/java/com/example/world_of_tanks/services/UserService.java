@@ -8,6 +8,7 @@ import com.example.world_of_tanks.models.dto.RegisterDTO;
 import com.example.world_of_tanks.models.enums.UserRoleEnum;
 import com.example.world_of_tanks.repositories.UserRepository;
 import com.example.world_of_tanks.repositories.UserRoleRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +22,14 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRoleRepository userRoleRepository;
     private final EmailService emailService;
+    private final ModelMapper modelMapper;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, EmailService emailService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, EmailService emailService, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRoleRepository = userRoleRepository;
         this.emailService = emailService;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -52,11 +55,11 @@ public class UserService {
 
         UserRoleEntity role = this.userRoleRepository.findByUserRole(userRoleEnum);
 
-        // Трябв ми custom converter за да мога да преобразувам от registerDTO, в UserEntity
+        UserEntity user = modelMapper.map(registerDTO, UserEntity.class);
 
-        UserEntity user = new UserEntity().setEmail(registerDTO.getEmail()).setRoles(List.of(role))
-                .setUsername(registerDTO.getUsername()).setPassword(passwordEncoder.encode(registerDTO.getPassword()))
-                .setFullName(registerDTO.getFullName());
+        user.setRoles(List.of(role));
+
+        user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
         this.userRepository.save(user);
 

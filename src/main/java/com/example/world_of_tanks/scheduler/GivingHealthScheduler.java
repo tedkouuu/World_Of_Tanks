@@ -1,7 +1,6 @@
 package com.example.world_of_tanks.scheduler;
 
 import com.example.world_of_tanks.services.ScheduleService;
-import com.example.world_of_tanks.services.TankService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
