@@ -63,7 +63,7 @@ public class UserService {
 
         this.userRepository.save(user);
 
-        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+       // emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
 
         return true;
     }

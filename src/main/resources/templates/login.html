@@ -9,60 +9,36 @@
 <header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
-        <div class="container text-light ">
+        <div class="container text-light" style="display: none;">
             <h1 class="display-3">
                 <strong class="pl-3 font-weight-bold">Login</strong></h1>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="container bg-blur rounded p-5 mt-5 w-75 ">
 
-                    <form th:action="@{/users/login}"
-                          th:method="post"
-                          class="text-center text-light">
-                        <h3 class="mt-5 text-center">
-                            <strong class ="rounded  pl-3 text-danger">Enter valid
-                                username and
-                                password</strong>
-                        </h3>
-                        <div class="form-group row">
-                            <label for="username" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text"
-                                       name="username"
-                                       class="form-control"
-                                       id="username"
-                                       aria-describedby="usernameHelpInline"
-                                       placeholder="Username">
-                                <small
-                                        id="usernameHelpInline"
-                                        class="bg-danger text-light rounded invalid-feedback">
-                                    Username length must be between 3 and 10 characters.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="password" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password"
-                                       name="password"
-                                       class="form-control"
-                                       id="password"
-                                       aria-describedby="passwordHelpInline"
-                                       placeholder="Password">
-                                <small
-                                        id="passwordHelpInline"
-                                        class="bg-danger text-light rounded invalid-feedback">
-                                    Password length must be more than 3 characters.
-                                </small>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-danger w-50">Login</button>
-                    </form>
+        <div class="custom-login-div">
+            <form th:action="@{/users/login}" th:method="post">
+                <img class="mb-4" src=https://cdn-icons-png.flaticon.com/512/335/335066.png alt=""
+                     width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div class="form-floating">
+                    <input name="username" type="text" class="form-control" id="floatingInput" placeholder="username"
+                           wtx-context="9E0D6006-D946-49DB-AA0D-8FD9B58D432A">
+                    <label for="floatingInput">Username</label>
                 </div>
-            </div>
-            <div class="col-md-6">
-            </div>
+                <div class="form-floating">
+                    <input name="password" type="password" class="form-control" id="floatingPassword"
+                           placeholder="password" wtx-context="70B84895-744D-4846-8983-7935F7FF0300">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me" wtx-context="3D4A104F-B3DC-4228-BB5D-0C8CDE41D561">
+                        Remember me
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            </form>
         </div>
     </div>
 </main>

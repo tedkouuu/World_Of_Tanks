@@ -9,6 +9,7 @@ import com.example.world_of_tanks.repositories.CategoryRepository;
 import com.example.world_of_tanks.repositories.TankRepository;
 import com.example.world_of_tanks.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -129,7 +130,6 @@ public class TankService {
         for (Tank tank : tanks) {
 
             TankDTO tankDto = modelMapper.map(tank, TankDTO.class);
-
             enemyTanks.add(tankDto);
         }
 
@@ -211,6 +211,11 @@ public class TankService {
         return true;
 
     }
+//
+//    public TankDTO getTankById(Long id) {
+//
+//        return this.tankRepository.findById(id);
+//    }
 }
 
 

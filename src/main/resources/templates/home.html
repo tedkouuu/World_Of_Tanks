@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Battleships Application</title>
+    <title>World Of Tanks Application</title>
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body class="body-main">
@@ -26,7 +26,7 @@
                             <option value="0" selected>My tanks
                             </option>
                             <option th:each="tank : ${ownTanks}" th:value="${tank.getId()}"
-                                    th:text="${tank.getName()}"></option>
+                                    th:text="${tank.user.getFullName()} + ' - ' + ${tank.getName()}"></option>
 
                         </select>
                     </div>
@@ -45,10 +45,10 @@
                         </h3>
                         <div class="mb-1 text-white">Select enemy tank</div>
                         <select class="form-select mt-5" aria-label="Default select example"
-                                th:field="*{defenderId}">
+                                th:field="*{defenderId}" th:onchange="changeImgOfTank(this)">
                             <option value="0" selected>Enemy tanks</option>
                             <option th:each="tank : ${enemyTanks}" th:value="${tank.id}"
-                                    th:text="${tank.getName()}"></option>
+                                    th:text="${tank.user.getFullName()} + ' - ' + ${tank.getName()}"></option>
                         </select>
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"

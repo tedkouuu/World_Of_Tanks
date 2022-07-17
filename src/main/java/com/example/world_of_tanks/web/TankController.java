@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -148,5 +149,12 @@ public class TankController {
         this.tankService.deleteUserTank(deleteUserTankDTO, userDetails);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/tank/getCategoryId")
+    @ResponseBody
+    public String getCategoryId(int tankId) {
+        // this.tankService.find
+        return "33";
     }
 }
