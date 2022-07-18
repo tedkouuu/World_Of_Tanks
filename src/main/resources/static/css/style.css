@@ -66,5 +66,12 @@ form.main-form {
 
 .custom-register-div {
     margin: 0 auto;
+}
+
+#h1home {
+
+    color: red;
+    text-align: center;
+    margin: 0 auto;
 
 }

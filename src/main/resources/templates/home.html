@@ -8,7 +8,8 @@
 <header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
-        <h1 class="text-center p-5 text-white font-weight-bold">Battle</h1>
+        <h1 id="h1home" class="text-center p-5 text-red font-weight-bold">Welcome to the battlefield, choose your
+            tank</h1>
         <form th:action="@{/tanks/battle}"
               th:method="post"
               th:object="${tankAttackDTO}"
@@ -68,7 +69,7 @@
                         <ul>
                             <li class="font-weight-bold" th:each="tank : ${sortedTanks}">
 
-                                <span th:text="${tank.getName()}"/> --- <span th:text="${tank.getHealth()}"/> --- <span
+                                <span th:text="${tank.getName()}"/> ---------------- <span th:text="${tank.getHealth()}"/> ---------------- <span
                                     th:text="${tank.getPower()}"/>
                             </li>
 
