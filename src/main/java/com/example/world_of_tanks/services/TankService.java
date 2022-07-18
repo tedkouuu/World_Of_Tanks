@@ -170,6 +170,12 @@ public class TankService {
 
         Optional<Tank> tank = this.tankRepository.findByName(editUserTankDTO.getOldName());
 
+        Optional<Tank> checkNewTank = this.tankRepository.findByName(editUserTankDTO.getNewName());
+
+        if (checkNewTank.isPresent()) {
+            return false;
+        }
+
         if (allUserTanks.isEmpty() || tank.isEmpty()) {
 
             return false;

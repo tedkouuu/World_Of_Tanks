@@ -1,59 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <title>World_Of_Tanks Application</title>
-
-    <th:block th:include="~{fragments/head}"/>
-
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body class="body-main">
-<header th:include="fragments/navigation">
-
-</header>
+<header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Edit Owned Tank</h2>
 
-        <div class="container bg-blur rounded p-5 mt-5 w-75">
-            <form th:action="@{/user/role/tank/edit}"
-                  th:method="post"
-                  th:object="${editUserTankDTO}"
+                                <div class="custom-register-div">
+                                    <form th:action="@{/user/role/tank/edit}"
+                                          th:method="post"
+                                          th:object="${editUserTankDTO}">
 
-                  class=" text-center text-light">
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Type in the name of the tank you want to make
-                        changes</label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                               th:field="*{oldName}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="name"
-                               aria-describedby="nameHelpInline" placeholder="old name">
-                        <small id="oldNameHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            Old name must be between 2 and 10 characters.
-                        </small>
+                                        <div class="form-outline mb-4">
+                                            <input type="text"
+                                                   name="name"
+                                                   th:field="*{oldName}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label">Old Tank Name</label>
+                                            <small id="nameHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank Old Name must be between 2 and 10 characters!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="text"
+                                                   name="power"
+                                                   th:field="*{newName}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label">New Tank Name</label>
+                                            <small id="powerHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                New Tank Name must be between 2 and 10 characters!
+                                            </small>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <button class="w-100 btn btn-lg btn-primary" type="submit">
+                                                Edit Tank
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Type in the new name of the tank
-                    </label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                               th:field="*{newName}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="newName"
-                               aria-describedby="newNameHelpInline" placeholder="new name">
-                        <small id="newNameHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            The new name must be between 2 and 10 characters.
-                        </small>
-                    </div>
-                </div>
+            </div>
 
-                <button type="submit" class="btn btn-danger w-50">Edit the Tank</button>
-            </form>
         </div>
     </div>
+
 </main>
 <th:block th:include="~{/fragments/footer}"/>
 </body>

@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <title>World_Of_Tanks Application</title>
-
-    <th:block th:include="~{fragments/head}"/>
-
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body class="body-main">
-<header th:include="fragments/navigation">
-
-</header>
+<header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Delete Tank</h2>
 
-        <div class="container bg-blur rounded p-5 mt-5 w-75">
-            <form th:action="@{/user/tank/delete}"
-                  th:method="post"
-                  th:object="${deleteUserTankDTO}"
+                                <div class="custom-register-div">
+                                    <form th:action="@{/user/tank/delete}"
+                                          th:method="post"
+                                          th:object="${deleteUserTankDTO}">
 
-                  class=" text-center text-light">
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Type in the name of the owned tank you want to
-                        delete</label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                               th:field="*{name}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="name"
-                               aria-describedby="nameHelpInline" placeholder="Name">
-                        <small id="nameHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            Name must be between 2 and 10 characters.
-                        </small>
+                                        <div class="form-outline mb-4">
+                                            <input type="text"
+                                                   name="username"
+                                                   id="form3Example1cg"
+                                                   th:field="*{name}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label" for="form3Example1cg">Type in the name of the
+                                                owned tank you want to
+                                                delete</label>
+                                            <small id="nameHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank Name must be between 2 and 10 characters!
+                                            </small>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="w-100 btn btn-lg btn-primary" type="submit">
+                                                Delete Tank
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
 
+            </div>
 
-                <button type="submit" class="btn btn-danger w-50">Delete the Tank</button>
-            </form>
         </div>
     </div>
+
 </main>
 <th:block th:include="~{/fragments/footer}"/>
 </body>
