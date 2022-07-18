@@ -67,7 +67,7 @@ public class TankController {
 
         this.tankService.addTank(addTankDTO, userDetails);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
     @GetMapping("/tank/edit")
@@ -87,7 +87,7 @@ public class TankController {
 
         this.tankService.editTank(editTankDTO);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
     @GetMapping("/user/role/tank/edit")
@@ -107,7 +107,7 @@ public class TankController {
 
         this.tankService.editUserTank(editUserTankDTO, userDetails);
 
-        return "redirect:/";
+        return "redirect:/users/home";
 
     }
 
@@ -128,7 +128,7 @@ public class TankController {
 
         this.tankService.deleteTank(deleteTankDTO);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
     @GetMapping("/user/tank/delete")
@@ -148,7 +148,7 @@ public class TankController {
 
         this.tankService.deleteUserTank(deleteUserTankDTO, userDetails);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
     @GetMapping("/tank/getCategoryId")

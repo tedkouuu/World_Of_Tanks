@@ -1,101 +1,126 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <title>World_Of_Tanks Application</title>
-
-    <th:block th:include="~{fragments/head}"/>
-
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body class="body-main">
-<header th:include="fragments/navigation">
-
-</header>
+<header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Add Tank</h2>
 
-        <div class="container bg-blur rounded p-5 mt-5 w-75">
-            <form th:action="@{/tank/add}"
-                  th:method="post"
-                  th:object="${addTankDTO}"
+                                <div class="custom-register-div">
+                                    <form th:action="@{/tank/add}"
+                                          th:method="post"
+                                          th:object="${addTankDTO}">
 
-                  class=" text-center text-light">
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                               th:field="*{name}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="name"
-                               aria-describedby="nameHelpInline" placeholder="Name">
-                        <small id="nameHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            Name must be between 2 and 10 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="power" class="col-sm-2 col-form-label">Power</label>
-                    <div class="col-sm-10">
-                        <input type="number"
-                               th:field="*{power}"
-                               th:errorclass="is-invalid"
-                               step="1" class="form-control" id="power"
-                               aria-describedby="powerHelpInline">
-                        <small id="powerHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            The power must be positive.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="health" class="col-sm-2 col-form-label">Health</label>
-                    <div class="col-sm-10">
-                        <input type="number"
-                               th:field="*{health}"
-                               th:errorclass="is-invalid"
-                               step="1" class="form-control" id="health"
-                               aria-describedby="healthHelpInline">
-                        <small id="healthHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            The health must be positive.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="created" class="col-sm-2 col-form-label">Created date</label>
-                    <div class="col-sm-10">
-                        <input type="date"
-                               th:field="*{created}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="created"
-                               aria-describedby="createdHelpInline">
-                        <small id="createdTimeHelpInline" class="bg-danger text-light rounded is-invalid">
-                            Created date cannot be in the future.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="category" class="col-sm-2 col-form-label">Category</label>
-                    <div class="col-sm-10">
-                        <select id="category"
-                                th:field="*{category}"
-                                th:errorclass="is-invalid"
-                                name="category" class="custom-select"
-                                aria-describedby="categoryHelpInline">
-                            <option value="" selected>Category</option>
-                            <option value="LIGHT_TANK">LIGHT_TANK</option>
-                            <option value="MEDIUM_TANK">MEDIUM_TANK</option>
-                            <option value="HEAVY_TANK">HEAVY_TANK</option>
-                        </select>
-                        <small id="categoryHelpInline" class="bg-danger text-light rounded is-invalid">
-                            You must select the category.
-                        </small>
-                    </div>
-                </div>
+                                        <div class="form-outline mb-4">
+                                            <input type="text"
+                                                   name="username"
+                                                   id="form3Example1cg"
+                                                   th:field="*{name}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
 
-                <button type="submit" class="btn btn-danger w-50">Add the new Tank</button>
-            </form>
+                                            <label class="form-label" for="form3Example1cg">Your Tank
+                                                Name</label>
+                                            <small id="nameHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank name be between 2 and 10 characters!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="number"
+                                                   name="name"
+                                                   th:field="*{power}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+                                            <label class="form-label" for="form3Example3cg">Tank
+                                                power</label>
+                                            <small id="powerHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank power must be positive number!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="number" id="form3Example3cg"
+                                                   th:field="*{health}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+                                            <label class="form-label" for="form3Example3cg">Your Tank Health</label>
+                                            <small id="emailHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank health must be positive number!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="created" class="col-sm-2 col-form-label">Create
+                                                date</label>
+                                            <div class="col-sm-10">
+                                                <input type="date"
+                                                       th:field="*{created}"
+                                                       th:errorclass="is-invalid"
+                                                       class="form-control" id="created"
+                                                       aria-describedby="createdHelpInline">
+                                                <small id="createdTimeHelpInline"
+                                                       class="bg-danger text-light rounded is-invalid">
+                                                    Created date cannot be in the future.
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="category"
+                                                   class="col-sm-2 col-form-label">Category</label>
+                                            <div class="col-sm-10">
+                                                <select id="category"
+                                                        th:field="*{category}"
+                                                        th:errorclass="is-invalid"
+                                                        name="category" class="custom-select"
+                                                        aria-describedby="categoryHelpInline">
+                                                    <option value="" selected>Category</option>
+                                                    <option value="LIGHT_TANK">LIGHT_TANK</option>
+                                                    <option value="MEDIUM_TANK">MEDIUM_TANK</option>
+                                                    <option value="HEAVY_TANK">HEAVY_TANK</option>
+                                                </select>
+                                                <small id="categoryHelpInline"
+                                                       class="bg-danger text-light rounded is-invalid">
+                                                    You must select the category.
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <button class="w-100 btn btn-lg btn-primary" type="submit">
+                                                Add Tank
+                                            </button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
     </div>
+
 </main>
-<th:block th:include="~{/fragments/footer}"/>
+<th:block th:replace="~{fragments/footer}"/>
 </body>
 </html>

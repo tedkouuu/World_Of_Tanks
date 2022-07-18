@@ -83,7 +83,7 @@ public class UserController {
 
         this.userService.editUser(editUserDTO);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 
     @GetMapping("/users/delete")
@@ -103,6 +103,6 @@ public class UserController {
 
         this.userService.deleteUser(deleteUserDTO);
 
-        return "redirect:/";
+        return "redirect:/users/home";
     }
 }
