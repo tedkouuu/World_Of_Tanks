@@ -1,69 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <title>World_Of_Tanks Application</title>
-
-    <th:block th:include="~{fragments/head}"/>
-
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body class="body-main">
-<header th:include="fragments/navigation">
-
-</header>
+<header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
-        <div class="container bg-blur rounded p-5 mt-5 w-75">
-            <form th:action="@{/tank/edit}"
-                  th:method="post"
-                  th:object="${editTankDTO}"
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Edit User</h2>
 
-                  class=" text-center text-light">
-                <div class="form-group row">
-                    <label for="name" class="col-sm-2 col-form-label">Type in the name of the tank you want to make changes</label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                               th:field="*{name}"
-                               th:errorclass="is-invalid"
-                               class="form-control" id="name"
-                               aria-describedby="nameHelpInline" placeholder="Name">
-                        <small id="nameHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            Name must be between 2 and 10 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="power" class="col-sm-2 col-form-label">Set the new power</label>
-                    <div class="col-sm-10">
-                        <input type="number"
-                               th:field="*{power}"
-                               th:errorclass="is-invalid"
-                               step="1" class="form-control" id="power"
-                               aria-describedby="powerHelpInline">
-                        <small id="powerHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            The power must be positive.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="health" class="col-sm-2 col-form-label">Set the new health</label>
-                    <div class="col-sm-10">
-                        <input type="number"
-                               th:field="*{health}"
-                               th:errorclass="is-invalid"
-                               step="1" class="form-control" id="health"
-                               aria-describedby="healthHelpInline">
-                        <small id="healthHelpInline" class="bg-danger text-light rounded invalid-feedback">
-                            The health must be positive.
-                        </small>
+                                <div class="custom-register-div">
+                                    <form th:action="@{/tank/edit}"
+                                          th:method="post"
+                                          th:object="${editTankDTO}">
+
+                                        <div class="form-outline mb-4">
+                                            <input type="text"
+                                                   name="name"
+                                                   th:field="*{name}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label" for="form3Example1cg">Tank Name</label>
+                                            <small id="nameHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Tank Name must be between 2 and 10 characters!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="number"
+                                                   name="power"
+                                                   th:field="*{power}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label" for="form3Example1cg">New Tank Power</label>
+                                            <small id="powerHelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Power must be positive number!
+                                            </small>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <input type="number"
+                                                   name="health"
+                                                   id="form3Example1cg"
+                                                   th:field="*{health}"
+                                                   th:errorclass="is-invalid"
+                                                   class="form-control form-control-lg"/>
+
+                                            <label class="form-label" for="form3Example1cg">New Tank Health</label>
+                                            <small id="healthhelpInline"
+                                                   class="bg-danger text-light rounded invalid-feedback">
+                                                Health must be positive number!
+                                            </small>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="w-100 btn btn-lg btn-primary" type="submit">
+                                                Edit Tank
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-danger w-50">Edit the Tank</button>
-            </form>
+            </div>
+
         </div>
     </div>
+
 </main>
 <th:block th:include="~{/fragments/footer}"/>
 </body>
 </html>
+
