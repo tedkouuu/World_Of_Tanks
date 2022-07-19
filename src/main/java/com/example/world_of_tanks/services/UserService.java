@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,7 @@ public class UserService {
     }
 
 
-    public boolean register(RegisterDTO registerDTO) {
+    public boolean register(RegisterDTO registerDTO, Locale preferredLocale) {
 
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             return false;
@@ -63,7 +64,8 @@ public class UserService {
 
         this.userRepository.save(user);
 
-        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(),
+                preferredLocale);
 
         return true;
     }

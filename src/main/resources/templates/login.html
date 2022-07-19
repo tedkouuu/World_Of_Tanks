@@ -15,13 +15,18 @@
         </div>
 
         <div class="custom-login-div">
-            <form th:action="@{/users/login}" th:method="post">
+            <form th:action="@{/users/login}"
+                  th:method="post">
+
+
                 <img class="mb-4" src=https://cdn-icons-png.flaticon.com/512/335/335066.png alt=""
                      width="72" height="57">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input name="username" type="text" class="form-control" id="floatingInput" placeholder="username"
+                    <input name="username"
+                           th:value="${username}"
+                           type="text" class="form-control" id="floatingInput" placeholder="username"
                            wtx-context="9E0D6006-D946-49DB-AA0D-8FD9B58D432A">
                     <label for="floatingInput">Username</label>
                 </div>
@@ -30,6 +35,10 @@
                            placeholder="password" wtx-context="70B84895-744D-4846-8983-7935F7FF0300">
                     <label for="floatingPassword">Password</label>
                 </div>
+
+                <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                    Invalid username or password
+                </p>
 
                 <div class="checkbox mb-3">
                     <label>
