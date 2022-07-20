@@ -34,23 +34,7 @@ public class UserService {
     }
 
 
-    public boolean register(RegisterDTO registerDTO, Locale preferredLocale) {
-
-        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
-            return false;
-        }
-
-        Optional<UserEntity> userByUsername = this.userRepository.findByUsername(registerDTO.getUsername()); // TODO ПРОВЕРИ ДАЛИ МОГА БЕЗ ТОВА, DTO Е АНОТИРАНО
-
-        if (userByUsername.isPresent()) {
-            return false;
-        }
-
-        Optional<UserEntity> userByEmail = this.userRepository.findByEmail(registerDTO.getEmail());
-
-        if (userByEmail.isPresent()) {
-            return false;
-        }
+    public void register(RegisterDTO registerDTO, Locale preferredLocale) {
 
         UserRoleEnum userRoleEnum = registerDTO.getRole();
 
@@ -64,10 +48,9 @@ public class UserService {
 
         this.userRepository.save(user);
 
-//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(), // TODO
+//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(),
 //                preferredLocale);
 
-        return true;
     }
 
     public boolean editUser(EditUserDTO editUserDTO) {

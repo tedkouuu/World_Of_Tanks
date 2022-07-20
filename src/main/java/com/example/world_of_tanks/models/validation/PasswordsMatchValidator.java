@@ -12,7 +12,6 @@ public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMat
     private String second;
     private String message;
 
-
     @Override
     public void initialize(PasswordsMatch constraintAnnotation) {
         this.first = constraintAnnotation.first();
@@ -44,6 +43,6 @@ public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMat
                     disableDefaultConstraintViolation();
         }
 
-        return false;
+        return valid;
     }
 }
