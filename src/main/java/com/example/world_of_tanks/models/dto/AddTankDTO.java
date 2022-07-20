@@ -1,6 +1,7 @@
 package com.example.world_of_tanks.models.dto;
 
 import com.example.world_of_tanks.models.enums.CategoryEnum;
+import com.example.world_of_tanks.models.validation.UniqueTankName;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
@@ -8,8 +9,9 @@ import java.time.LocalDate;
 
 public class AddTankDTO {
 
-    @NotBlank
-    @Size(min = 2, max = 10)
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 10, message = "Name must be between 2 and 10 characters!")
+    @UniqueTankName(message = "Tank with this name already exists!")
     private String name;
 
     @Positive

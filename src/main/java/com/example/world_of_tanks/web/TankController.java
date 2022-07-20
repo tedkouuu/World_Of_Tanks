@@ -58,7 +58,7 @@ public class TankController {
     public String addShip(@Valid AddTankDTO addTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
 
 
-        if (bindingResult.hasErrors() || !this.tankService.addTank(addTankDTO, userDetails)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addTankDTO", addTankDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addTankDTO", bindingResult);
 

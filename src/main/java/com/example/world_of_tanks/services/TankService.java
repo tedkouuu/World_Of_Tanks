@@ -33,13 +33,7 @@ public class TankService {
         this.modelMapper = modelMapper;
     }
 
-    public boolean addTank(AddTankDTO addTankDTO, UserDetails userDetails) {
-
-        Optional<Tank> tank = this.tankRepository.findByName(addTankDTO.getName());
-
-        if (tank.isPresent()) {
-            return false;
-        }
+    public void addTank(AddTankDTO addTankDTO, UserDetails userDetails) {
 
         CategoryEnum categoryEnum = addTankDTO.getCategory();
 
@@ -53,7 +47,6 @@ public class TankService {
 
         tankModelMapper.setCategory(category);
 
-
         // Ако model mapper не работи, мога винаги да си ползвам сетъри!
 
 //        Tank tankToSave = new Tank().
@@ -63,9 +56,6 @@ public class TankService {
 //        tankToSave.setCategory(category).setUser(user);
 
         this.tankRepository.save(tankModelMapper);
-
-        return true;
-
 
     }
 
