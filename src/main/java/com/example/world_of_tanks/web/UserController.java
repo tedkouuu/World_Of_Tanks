@@ -51,7 +51,7 @@ public class UserController {
     public String register(@Valid RegisterDTO registerDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
 
-        if (bindingResult.hasErrors() || !this.userService.register(registerDTO, localeResolver.resolveLocale(request))) {
+        if (bindingResult.hasErrors() || !this.userService.register(registerDTO, localeResolver.resolveLocale(request))) { // МИСЛЯ ЧЕ МОГА И БЕЗ ПРОВЕРКИ В SERVICE, ИМАМ АНОТАЦИИ
             redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDTO", bindingResult);
 

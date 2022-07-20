@@ -40,7 +40,7 @@ public class UserService {
             return false;
         }
 
-        Optional<UserEntity> userByUsername = this.userRepository.findByUsername(registerDTO.getUsername());
+        Optional<UserEntity> userByUsername = this.userRepository.findByUsername(registerDTO.getUsername()); // TODO ПРОВЕРИ ДАЛИ МОГА БЕЗ ТОВА, DTO Е АНОТИРАНО
 
         if (userByUsername.isPresent()) {
             return false;
@@ -64,8 +64,8 @@ public class UserService {
 
         this.userRepository.save(user);
 
-        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(),
-                preferredLocale);
+//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(), // TODO
+//                preferredLocale);
 
         return true;
     }

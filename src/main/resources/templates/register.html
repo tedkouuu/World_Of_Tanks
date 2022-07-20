@@ -33,12 +33,16 @@
                                             <label class="form-label" for="form3Example1cg">Your Username</label>
                                             <small id="usernameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Username must be between 3 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('username')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 
                                         <div class="form-outline mb-4">
-                                            <input type="fullName"
+                                            <input type="text"
                                                    name="fullName"
                                                    id="fullName"
                                                    th:field="*{fullName}"
@@ -60,7 +64,11 @@
                                             <label class="form-label" for="form3Example3cg">Your Email</label>
                                             <small id="emailHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Email must contain @ and cannot be empty!
+                                                <div
+                                                        th:each="err : ${#fields.errors('email')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 
@@ -89,7 +97,7 @@
                                                 password</label>
                                             <small id="confirmPasswordHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Confirm password must be at least 3 characters!
+                                                Passwords should match!
                                             </small>
                                         </div>
 

@@ -1,26 +1,34 @@
 package com.example.world_of_tanks.models.dto;
 
-
-import com.example.world_of_tanks.models.UserRoleEntity;
 import com.example.world_of_tanks.models.enums.UserRoleEnum;
+import com.example.world_of_tanks.models.validation.PasswordsMatch;
+import com.example.world_of_tanks.models.validation.UniqueUserEmail;
+import com.example.world_of_tanks.models.validation.UniqueUserName;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@PasswordsMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do not match!"
+)
 public class RegisterDTO {
 
-    @Size(min = 3, max = 10)
-    @NotBlank
+    @Size(min = 3, max = 10, message = "Username must be between 3 and 10 symbols")
+    @NotBlank(message = "Username should not be empty!")
+    @UniqueUserName
     private String username;
 
     @Size(min = 5, max = 20)
     @NotBlank
     private String fullName;
 
-    @Email
-    @NotBlank
+    @Email(message = "Email must be valid!")
+    @NotBlank(message = "Email must be provided!")
+    @UniqueUserEmail(message = "Email is already taken!")
     private String email;
 
     @Size(min = 3)
@@ -84,13 +92,7 @@ public class RegisterDTO {
 
     @Override
     public String toString() {
-        return "RegisterDTO{" +
-                "userName='" + getUsername() + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                '}';
+        return "RegisterDTO{" + "userName='" + getUsername() + '\'' + ", fullName='" + fullName + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", confirmPassword='" + confirmPassword + '\'' + '}';
     }
 
     public UserRoleEnum getRole() {
