@@ -76,7 +76,7 @@ public class UserController {
     @PostMapping("/users/edit")
     public String edit(@Valid EditUserDTO editUserDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !this.userService.editUser(editUserDTO)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("editUserDTO", editUserDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editUserDTO", bindingResult);
 

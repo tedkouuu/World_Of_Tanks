@@ -53,19 +53,9 @@ public class UserService {
 
     }
 
-    public boolean editUser(EditUserDTO editUserDTO) {
+    public void editUser(EditUserDTO editUserDTO) {
 
         Optional<UserEntity> oldUser = this.userRepository.findByUsername(editUserDTO.getOldUsername());
-
-        if (oldUser.isEmpty()) {
-            return false;
-        }
-
-        Optional<UserEntity> checkUser = this.userRepository.findByUsername(editUserDTO.getNewUsername());
-
-        if (checkUser.isPresent()) {
-            return false;
-        }
 
         UserEntity entityToEdit = oldUser.get();
 
@@ -73,7 +63,6 @@ public class UserService {
 
         this.userRepository.save(entityToEdit);
 
-        return true;
 
     }
 

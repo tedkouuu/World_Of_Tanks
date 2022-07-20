@@ -119,7 +119,7 @@ public class TankController {
     @PostMapping("/tank/delete")
     public String edit(@Valid DeleteTankDTO deleteTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !this.tankService.deleteTank(deleteTankDTO)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("deleteTankDTO", deleteTankDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.deleteTankDTO", bindingResult);
 

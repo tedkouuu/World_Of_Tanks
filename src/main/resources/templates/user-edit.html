@@ -32,7 +32,11 @@
                                             <label class="form-label" for="form3Example1cg">Old Username</label>
                                             <small id="oldUsernameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Old Username must be between 3 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('oldUsername')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 
@@ -46,7 +50,11 @@
                                             <label class="form-label" for="form3Example1cg">New Username</label>
                                             <small id="newUsernameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                New Username must be between 3 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('newUsername')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 

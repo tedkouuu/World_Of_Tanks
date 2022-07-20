@@ -77,19 +77,15 @@ public class TankService {
 
     }
 
-    public boolean deleteTank(DeleteTankDTO deleteTankDTO) {
+    public void deleteTank(DeleteTankDTO deleteTankDTO) {
 
         Optional<Tank> tankToDelete = this.tankRepository.findByName(deleteTankDTO.getName());
-
-        if (tankToDelete.isEmpty()) {
-            return false;
-        }
 
         Tank tankToEdit = tankToDelete.get();
 
         tankRepository.delete(tankToEdit);
 
-        return true;
+
     }
 
 

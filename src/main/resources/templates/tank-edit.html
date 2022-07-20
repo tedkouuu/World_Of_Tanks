@@ -15,7 +15,7 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Edit User</h2>
+                                <h2 class="text-uppercase text-center mb-5">Edit Tank</h2>
 
                                 <div class="custom-register-div">
                                     <form th:action="@{/tank/edit}"
@@ -32,7 +32,11 @@
                                             <label class="form-label" for="form3Example1cg">Tank Name</label>
                                             <small id="nameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Tank Name must be between 2 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('name')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 

@@ -33,7 +33,11 @@
                                             <label class="form-label" for="form3Example1cg">Name</label>
                                             <small id="nameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Tank Name must be between 2 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('name')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
                                         <div class="d-flex justify-content-center">

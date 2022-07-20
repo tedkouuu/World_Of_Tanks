@@ -1,16 +1,21 @@
 package com.example.world_of_tanks.models.dto;
 
+import com.example.world_of_tanks.models.validation.UniqueUserName;
+import com.example.world_of_tanks.models.validation.UserExist;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class EditUserDTO {
 
-    @Size(min = 3, max = 10)
-    @NotBlank
+    @Size(min = 3, max = 10, message = "Old username must be between 3 and 10 characters!")
+    @NotBlank(message = "You need the old user username!")
+    @UserExist
     private String oldUsername;
 
-    @Size(min = 3, max = 10)
-    @NotBlank
+    @Size(min = 3, max = 10, message = "New username must be between 3 and 10 characters!")
+    @NotBlank(message = "You need the old user username!")
+    @UniqueUserName
     private String newUsername;
 
     @Size(min = 5, max = 20)
