@@ -77,17 +77,11 @@ public class UserService {
 
     }
 
-    public boolean deleteUser(DeleteUserDTO deleteUserDTO) {
+    public void deleteUser(DeleteUserDTO deleteUserDTO) {
 
         Optional<UserEntity> user = this.userRepository.findByUsername(deleteUserDTO.getUsername());
 
-        if (user.isEmpty()) {
-            return false;
-        }
-
         this.userRepository.delete(user.get());
-
-        return true;
 
     }
 

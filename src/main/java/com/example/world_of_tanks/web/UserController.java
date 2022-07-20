@@ -96,7 +96,7 @@ public class UserController {
     @PostMapping("/users/delete")
     public String edit(@Valid DeleteUserDTO deleteUserDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !this.userService.deleteUser(deleteUserDTO)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("deleteUserDTO", deleteUserDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.deleteUserDTO", bindingResult);
 
