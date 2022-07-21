@@ -58,27 +58,9 @@
                          data-holder-rendered="true" style="width: 200px; height: 250px;">
                 </div>
             </div>
-            <button type="submit" class="col-md-6 mx-auto btn btn-danger btn-lg btn-block mt-5 mb-5">Attack !</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Attack!</button>
         </form>
-        <div>
-            <div class="col-md-6 mx-auto bg-blur rounded text-white">
-                <div class="card-body d-flex flex-column">
-                    <h4 class="d-inline-block mb-2 text-primary align-self-center">All Tanks And Their Status:</h4>
-                    <div class="text-center">
-                        <h5> Tank Name -- Tank Health -- Tank Power </h5>
-                        <ul>
-                            <li class="font-weight-bold" th:each="tank : ${sortedTanks}">
 
-                                <span th:text="${tank.getName()}"/> ---------------- <span th:text="${tank.getHealth()}"/> ---------------- <span
-                                    th:text="${tank.getPower()}"/>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </main>
 <th:block th:replace="~{fragments/footer}"/>
