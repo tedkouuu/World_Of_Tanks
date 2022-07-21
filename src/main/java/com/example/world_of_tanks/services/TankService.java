@@ -217,6 +217,23 @@ public class TankService {
 
     }
 
+    public List<TankInfoDTO> findAllTanks() {
+
+        List<Tank> allTanks = this.tankRepository.findAll();
+
+        List<TankInfoDTO> tanksToShow = new ArrayList<>();
+
+        for (Tank current : allTanks) {
+
+            TankInfoDTO tankDTO = new TankInfoDTO().setPower(current.getPower())
+                    .setHealth(current.getHealth()).setName(current.getName());
+
+            tanksToShow.add(tankDTO);
+
+        }
+
+        return tanksToShow;
+    }
 }
 
 

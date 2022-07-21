@@ -20,5 +20,7 @@ public interface TankRepository extends JpaRepository<Tank, Long> {
 
     List<Tank> findByOrderByHealthDesc();
 
+    List<Tank> findAll();
+
 
 }

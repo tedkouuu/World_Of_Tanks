@@ -70,7 +70,7 @@ form.main-form {
 
 #h1home {
 
-    color: lime;
+    color: red;
     text-align: center;
     margin: 0 auto;
 
@@ -80,4 +80,9 @@ form.main-form {
 
     text-align: center;
     margin: 0 auto;
+}
+
+.customH3{
+    text-align: center;
+    color: white;
 }
