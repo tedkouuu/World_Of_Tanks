@@ -32,7 +32,11 @@
                                             <label class="form-label">Old Tank Name</label>
                                             <small id="nameHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                Tank Old Name must be between 2 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('oldName')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 
@@ -46,7 +50,11 @@
                                             <label class="form-label">New Tank Name</label>
                                             <small id="powerHelpInline"
                                                    class="bg-danger text-light rounded invalid-feedback">
-                                                New Tank Name must be between 2 and 10 characters!
+                                                <div
+                                                        th:each="err : ${#fields.errors('newName')}"
+                                                        th:text="${err}"
+
+                                                ></div>
                                             </small>
                                         </div>
 
