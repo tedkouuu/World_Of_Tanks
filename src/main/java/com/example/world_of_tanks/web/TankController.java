@@ -151,10 +151,28 @@ public class TankController {
         return "redirect:/users/home";
     }
 
-    @GetMapping("/tank/getCategoryId")
-    @ResponseBody
-    public String getCategoryId(int tankId) {
-        // this.tankService.find
-        return "33";
+    @GetMapping("/tanks/delete/all")
+    public String getDeleteAll() {
+        return "delete-all-tanks";
     }
+
+    @PostMapping("/tanks/delete/all")
+    public String deleteAllTanks(@AuthenticationPrincipal UserDetails userDetails) {
+
+        this.tankService.deleteAllTUserTanks(userDetails);
+
+        return "redirect:/tank/add";
+
+    }
+
+
+// ВАЖНО!!! TODO
+//    @GetMapping("/tank/getCategoryId")
+//    @ResponseBody
+//    public String getCategoryId(int tankId) {
+//        // this.tankService.find
+//        return "33";
+//    }
+
+
 }

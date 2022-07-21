@@ -204,11 +204,19 @@ public class TankService {
         return true;
 
     }
-//
-//    public TankDTO getTankById(Long id) {
-//
-//        return this.tankRepository.findById(id);
-//    }
+
+    public void deleteAllTUserTanks(UserDetails userDetails) {
+
+        List<Tank> allUserTanks = this.tankRepository.findByUserUsername(userDetails.getUsername());
+
+        if (allUserTanks.isEmpty()) {
+            return;
+        }
+
+        this.tankRepository.deleteAll(allUserTanks);
+
+    }
+
 }
 
 
