@@ -70,8 +70,14 @@ form.main-form {
 
 #h1home {
 
-    color: red;
+    color: lime;
     text-align: center;
     margin: 0 auto;
 
+}
+
+.customSpan{
+
+    text-align: center;
+    margin: 0 auto;
 }

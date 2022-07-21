@@ -8,7 +8,7 @@
 <header th:include="~{fragments/navigation}"></header>
 <main role="main">
     <div class="jumbotron">
-        <h1 id="h1home" class="text-center p-5 text-red font-weight-bold">Welcome to the battlefield, choose your
+        <h1 id="h1home" class="text-center p-5 text-blue font-weight-bold">Welcome to the battlefield, choose your
             tank</h1>
         <form th:action="@{/tanks/battle}"
               th:method="post"
@@ -58,7 +58,9 @@
                          data-holder-rendered="true" style="width: 200px; height: 250px;">
                 </div>
             </div>
+            <span class="customSpan">
             <button class="w-100 btn btn-lg btn-primary" type="submit">Attack!</button>
+            </span>
         </form>
 
     </div>
