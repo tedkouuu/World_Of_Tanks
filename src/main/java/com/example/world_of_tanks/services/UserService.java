@@ -25,6 +25,7 @@ public class UserService {
     private final EmailService emailService;
     private final ModelMapper modelMapper;
 
+
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository, EmailService emailService, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -48,8 +49,8 @@ public class UserService {
 
         this.userRepository.save(user);
 
-//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(),
-//                preferredLocale);
+        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName(),
+                preferredLocale);
 
     }
 
