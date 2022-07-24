@@ -70,10 +70,12 @@ form.main-form {
 
 #h1home {
 
-    color: red;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 5px;
     text-align: center;
     margin: 0 auto;
-
+    margin-bottom: 10px;
 }
 
 .customSpan{
@@ -85,4 +87,9 @@ form.main-form {
 .customH3{
     text-align: center;
     color: white;
+}
+
+nav.navbar {
+    background-color: black;
+
 }

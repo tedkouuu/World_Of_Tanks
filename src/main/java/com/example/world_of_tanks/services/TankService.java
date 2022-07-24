@@ -234,6 +234,17 @@ public class TankService {
 
         return tanksToShow;
     }
+
+    public TankDTO getTankById(Long id) {
+
+        Optional<Tank> tank = this.tankRepository.findById(id);
+
+        Tank realTank = tank.get();
+
+        return new TankDTO().setName(realTank.getName())
+                .setHealth(realTank.getHealth()).setPower(realTank.getPower())
+                .setCategory(realTank.getCategory()).setUser(realTank.getUser());
+    }
 }
 
 
