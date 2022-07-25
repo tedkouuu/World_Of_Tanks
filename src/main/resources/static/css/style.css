@@ -78,18 +78,24 @@ form.main-form {
     margin-bottom: 10px;
 }
 
-.customSpan{
+.customSpan {
 
     text-align: center;
     margin: 0 auto;
 }
 
-.customH3{
+.customH3 {
     text-align: center;
     color: white;
 }
 
 nav.navbar {
     background-color: black;
+}
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
