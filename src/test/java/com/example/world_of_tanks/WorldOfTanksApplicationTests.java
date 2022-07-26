@@ -9,5 +9,4 @@ class WorldOfTanksApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
