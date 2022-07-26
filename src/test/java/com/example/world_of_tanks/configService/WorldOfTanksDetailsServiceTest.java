@@ -76,6 +76,8 @@ public class WorldOfTanksDetailsServiceTest {
 
         //act && assert
         Assertions.assertThrows(UsernameNotFoundException.class, () -> toTest.loadUserByUsername("penka"));
+
+
     }
 }
 

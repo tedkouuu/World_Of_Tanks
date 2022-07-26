@@ -57,7 +57,7 @@ public class EmailService {
                                           String userName) {
         Context ctx = new Context();
         ctx.setLocale(locale);
-        ctx.setVariable("userName", userName);
+        ctx.setVariable("fullName", userName);
         return templateEngine.process("email/registration", ctx);
     }
 
