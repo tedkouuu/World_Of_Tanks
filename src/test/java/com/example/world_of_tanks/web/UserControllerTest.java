@@ -44,9 +44,9 @@ class UserControllerTest {
         // НЯМАМ IN MEMORY DB, ТАКА ЧЕ ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ СТОЙНОСТИТЕ ЗА USERNAME И PASSWORD
     void testUserRegistration() throws Exception {
         mockMvc.perform(post("/users/register").
-                param("username", "Magda1"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
-                        param("fullName", "Magdalena1"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
-                        param("email", "magda@021").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
+                param("username", "Magda600"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
+                        param("fullName", "Magdalena600"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
+                        param("email", "magda@600").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
                         param("password", "123").
                 param("confirmPassword", "123").
                 param("role", "ADMIN").with(csrf()).
@@ -54,7 +54,7 @@ class UserControllerTest {
 
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/login"));
 
-        verify(mockEmailService).sendRegistrationEmail("magda@02", "Magdalena1",
+        verify(mockEmailService).sendRegistrationEmail("magda@600", "Magdalena600",
                 Locale.FRENCH);
 
     }
@@ -77,6 +77,24 @@ class UserControllerTest {
                 param("password", "123").
                 with(csrf())
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
+    }
+
+    // GET MAPPING EDIT USER
+    @Test
+    // ТРЯБВА ДА РАЗБЕРА КАК ДА ИЗЛЪЖА ИДЕТО ЧЕ ТОЗИ USER ИМА СЕСИЯ
+    void testEditPageShown() throws Exception {
+        mockMvc.perform(get("/users/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("user-edit"));
+    }
+
+    // GET MAPPING TANK INFO
+    @Test
+    void testTankInfoPageShown() throws Exception {
+        mockMvc.perform(get("/tanks/info"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("tanks-info"));
+
     }
 }
 
