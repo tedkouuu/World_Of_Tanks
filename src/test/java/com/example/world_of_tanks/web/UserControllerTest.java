@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithSecurityContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.http.Cookie;
@@ -44,9 +46,9 @@ class UserControllerTest {
         // НЯМАМ IN MEMORY DB, ТАКА ЧЕ ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ СТОЙНОСТИТЕ ЗА USERNAME И PASSWORD
     void testUserRegistration() throws Exception {
         mockMvc.perform(post("/users/register").
-                param("username", "Magda600"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
-                        param("fullName", "Magdalena600"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
-                        param("email", "magda@600").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
+                param("username", "Mara321"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
+                        param("fullName", "Marata1"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
+                        param("email", "Mara@321").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
                         param("password", "123").
                 param("confirmPassword", "123").
                 param("role", "ADMIN").with(csrf()).
@@ -54,7 +56,7 @@ class UserControllerTest {
 
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/login"));
 
-        verify(mockEmailService).sendRegistrationEmail("magda@600", "Magdalena600",
+        verify(mockEmailService).sendRegistrationEmail("Mara@321", "Marata1",
                 Locale.FRENCH);
 
     }
@@ -79,13 +81,22 @@ class UserControllerTest {
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
     }
 
-    // GET MAPPING EDIT USER
+    // GET MAPPING EDIT USER / ADMIN ROLE
     @Test
+    @WithMockUser(roles = {"ADMIN"})
     // ТРЯБВА ДА РАЗБЕРА КАК ДА ИЗЛЪЖА ИДЕТО ЧЕ ТОЗИ USER ИМА СЕСИЯ
     void testEditPageShown() throws Exception {
         mockMvc.perform(get("/users/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user-edit"));
+    }
+
+    @Test // GET NAPPING DELETE USERS / ADMIN ROLE
+    @WithMockUser(roles = {"ADMIN"})
+    void testUsersDeletePageShown() throws Exception {
+        mockMvc.perform(get("/users/delete"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("users-delete"));
     }
 
     // GET MAPPING TANK INFO
@@ -94,7 +105,27 @@ class UserControllerTest {
         mockMvc.perform(get("/tanks/info"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("tanks-info"));
+    }
 
+    @Test // POST MAPPING DELETE USER / ADMIN ROLE
+    @WithMockUser(roles = {"ADMIN"})
+    void testUserDeleteWithAdminRole() throws Exception {
+        mockMvc.perform(post("/users/delete").
+                param("username", "tedko499").
+                with(csrf())
+        ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
+    }
+
+    @Test // POST MAPPING DELETE USER / ADMIN ROLE
+    @WithMockUser(roles = {"ADMIN"})
+    void testUserEditWithAdminRole() throws Exception {
+        mockMvc.perform(post("/users/edit").
+                param("oldUsername", "mara12").
+                param("newUsername", "silenkon").
+                param("fullName", "leshoqd").
+                param("password", "123").
+                with(csrf())
+        ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
     }
 }
 
