@@ -8,9 +8,10 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -65,5 +66,25 @@ class TankControllerTest {
         mockMvc.perform(get("/tank/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("tank-add"));
+    }
+
+    @Test
+        // GET MAPPING TANK INFO / WITH NO MATTER ROLE
+    void testTankInfoPageShown() throws Exception {
+        mockMvc.perform(get("/tanks/info"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("tanks-info"))
+                .andExpect(model().attributeExists("allTanks"));
+    }
+
+    @Test // POST MAPPING DELETE TANK WITH USER ROLE
+    @WithMockUser(roles = {"ADMIN"})
+    void testTankDeleteErrorAdminRole() throws Exception {
+        mockMvc.perform(post("/tank/delete").
+                        param("name", "example").
+                        with(csrf())
+                ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/tank/delete"))
+                .andExpect(flash().attributeExists("deleteTankDTO"))
+                .andExpect(flash().attributeExists("org.springframework.validation.BindingResult.deleteTankDTO"));
     }
 }
