@@ -1,12 +1,14 @@
 package com.example.world_of_tanks.models.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class SearchTankDTO {
 
     private String name;
 
-    private long health;
+    private Integer health;
 
-    private long power;
+    private Integer power;
 
     public String getName() {
         return name;
@@ -17,27 +19,27 @@ public class SearchTankDTO {
         return this;
     }
 
-    public long getHealth() {
+    public Integer getHealth() {
         return health;
     }
 
-    public SearchTankDTO setHealth(long health) {
+    public SearchTankDTO setHealth(Integer health) {
         this.health = health;
         return this;
     }
 
-    public long getPower() {
-        return power;
-    }
-
-    public SearchTankDTO setPower(long power) {
+    public SearchTankDTO setPower(Integer power) {
         this.power = power;
         return this;
     }
 
+    public Integer getPower() {
+        return power;
+    }
+
     public boolean isEmpty() {
         return (name == null || name.isEmpty()) &&
-                health == 0 &&
-                power == 0;
+                health == null &&
+                power == null;
     }
 }
