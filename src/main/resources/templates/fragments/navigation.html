@@ -26,7 +26,7 @@
                 </li>
 
                 <li class="nav-item" sec:authorize="permitAll()">
-                    <a class="nav-link" href="/tanks/search">Search</a>
+                    <a class="nav-link" th:text="#{navbar_search}" href="/tanks/search">Search</a>
                 </li>
 
             </th:block>
