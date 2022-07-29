@@ -1,5 +1,7 @@
 package com.example.world_of_tanks.models.dto;
 
+import java.time.LocalDate;
+
 public class TankInfoDTO {
 
     public TankInfoDTO() {
@@ -12,6 +14,8 @@ public class TankInfoDTO {
     private long health;
 
     private long power;
+
+    private LocalDate created;
 
     public long getId() {
         return id;
@@ -28,6 +32,15 @@ public class TankInfoDTO {
 
     public TankInfoDTO setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public TankInfoDTO setCreated(LocalDate created) {
+        this.created = created;
         return this;
     }
 
@@ -48,4 +61,5 @@ public class TankInfoDTO {
         this.power = power;
         return this;
     }
+
 }

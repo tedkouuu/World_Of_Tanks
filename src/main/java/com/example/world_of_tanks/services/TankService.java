@@ -10,7 +10,6 @@ import com.example.world_of_tanks.repositories.TankRepository;
 import com.example.world_of_tanks.repositories.TankSpecification;
 import com.example.world_of_tanks.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -227,6 +226,7 @@ public class TankService {
         for (Tank current : allTanks) {
 
             TankInfoDTO tankDTO = new TankInfoDTO().setPower(current.getPower())
+                    .setCreated(current.getCreated())
                     .setHealth(current.getHealth()).setName(current.getName());
 
             tanksToShow.add(tankDTO);
@@ -256,6 +256,7 @@ public class TankService {
         for (Tank tank : all) {
 
             SearchTankDTO map = modelMapper.map(tank, SearchTankDTO.class);
+            searchTankDTO.setCategoryName(tank.getCategory().getName());
 
             toReturn.add(map);
 

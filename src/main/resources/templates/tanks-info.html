@@ -12,19 +12,22 @@
 
         <img class="center"
              style="width: 650px; height: 250px;"
-             src="/images/tank-info.jpg" alt="tank_info" >
+             src="/images/tank-info.jpg" alt="tank_info">
 
         <div>
             <div class="col-md-6 mx-auto bg-blur rounded text-white">
                 <div class="card-body d-flex flex-column">
                     <h4 class="d-inline-block mb-2 text-primary align-self-center">Tanks Status:</h4>
                     <div class="text-center">
-                        <h5>Name - Health - Power </h5>
+                        <h5>Name - Health - Power - Created On </h5>
                         <ul>
                             <li class="font-weight-bold" th:each="tank : ${allTanks}">
 
                                 <span th:text="${tank.getName()}"/> - <span th:text="${tank.getHealth()}"/> - <span
-                                    th:text="${tank.getPower()}"/>
+                                    th:text="${tank.getPower()}"/> -
+                                <span th:text="${tank.getCreated()}"/>
+
+
                             </li>
                         </ul>
                     </div>
