@@ -7,6 +7,7 @@ import com.example.world_of_tanks.models.dto.*;
 import com.example.world_of_tanks.models.enums.CategoryEnum;
 import com.example.world_of_tanks.repositories.CategoryRepository;
 import com.example.world_of_tanks.repositories.TankRepository;
+import com.example.world_of_tanks.repositories.TankSpecification;
 import com.example.world_of_tanks.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -244,6 +245,24 @@ public class TankService {
         return new TankDTO().setName(realTank.getName())
                 .setHealth(realTank.getHealth()).setPower(realTank.getPower())
                 .setCategory(realTank.getCategory()).setUser(realTank.getUser());
+    }
+
+    public List<SearchTankDTO> searchTanks(SearchTankDTO searchTankDTO) {
+
+        List<SearchTankDTO> toReturn = new ArrayList<>();
+
+        List<Tank> all = this.tankRepository.findAll(new TankSpecification(searchTankDTO));
+
+        for (Tank tank : all) {
+
+            SearchTankDTO map = modelMapper.map(tank, SearchTankDTO.class);
+
+            toReturn.add(map);
+
+        }
+
+        return toReturn;
+
     }
 }
 

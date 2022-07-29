@@ -177,6 +177,30 @@ public class TankController {
 
     }
 
+    @GetMapping("/tanks/search")
+    public String searchTankQuery(@Valid SearchTankDTO searchTankDTO,
+                                  BindingResult bindingResult,
+                                  Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("searchTankDTO", searchTankDTO);
+            model.addAttribute(
+                    "org.springframework.validation.BindingResult.searchTankDTO",
+                    bindingResult);
+            return "tank-search";
+        }
+
+        if (!model.containsAttribute("searchTankDTO")) {
+            model.addAttribute("searchTankDTO", searchTankDTO);
+        }
+
+        if (!searchTankDTO.isEmpty()) {
+            model.addAttribute("tanks", tankService.searchTanks(searchTankDTO));
+        }
+
+        return "tank-search";
+    }
+
 
 // ВАЖНО!!! TODO
 //    @GetMapping("/tank/getCategoryId")
