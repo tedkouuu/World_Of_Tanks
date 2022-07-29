@@ -227,7 +227,8 @@ public class TankService {
 
             TankInfoDTO tankDTO = new TankInfoDTO().setPower(current.getPower())
                     .setCreated(current.getCreated())
-                    .setHealth(current.getHealth()).setName(current.getName());
+                    .setHealth(current.getHealth()).setName(current.getName())
+                    .setCategoryName(current.getCategory().getName());
 
             tanksToShow.add(tankDTO);
 
@@ -256,7 +257,6 @@ public class TankService {
         for (Tank tank : all) {
 
             SearchTankDTO map = modelMapper.map(tank, SearchTankDTO.class);
-            searchTankDTO.setCategoryName(tank.getCategory().getName());
 
             toReturn.add(map);
 

@@ -12,23 +12,12 @@ public class SearchTankDTO {
 
     private Integer power;
 
-    private CategoryEnum categoryName;
-
     public String getName() {
         return name;
     }
 
     public SearchTankDTO setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public CategoryEnum getCategoryName() {
-        return categoryName;
-    }
-
-    public SearchTankDTO setCategoryName(CategoryEnum categoryName) {
-        this.categoryName = categoryName;
         return this;
     }
 

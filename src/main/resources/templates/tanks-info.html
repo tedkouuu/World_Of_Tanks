@@ -19,13 +19,14 @@
                 <div class="card-body d-flex flex-column">
                     <h4 class="d-inline-block mb-2 text-primary align-self-center">Tanks Status:</h4>
                     <div class="text-center">
-                        <h5>Name - Health - Power - Created On </h5>
+                        <h5>Name - Health - Power - Created On - Category </h5>
                         <ul>
                             <li class="font-weight-bold" th:each="tank : ${allTanks}">
 
-                                <span th:text="${tank.getName()}"/> - <span th:text="${tank.getHealth()}"/> - <span
-                                    th:text="${tank.getPower()}"/> -
-                                <span th:text="${tank.getCreated()}"/>
+                                <span th:text="${tank.getName()}"/> --- <span th:text="${tank.getHealth()}"/> --- <span
+                                    th:text="${tank.getPower()}"/> ---
+                                <span th:text="${tank.getCreated()}"/> ---
+                                <span th:text="${tank.getCategoryName()}"/>
 
 
                             </li>

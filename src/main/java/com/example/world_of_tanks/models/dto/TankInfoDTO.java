@@ -1,5 +1,7 @@
 package com.example.world_of_tanks.models.dto;
 
+import com.example.world_of_tanks.models.enums.CategoryEnum;
+
 import java.time.LocalDate;
 
 public class TankInfoDTO {
@@ -16,6 +18,8 @@ public class TankInfoDTO {
     private long power;
 
     private LocalDate created;
+
+    private CategoryEnum categoryName;
 
     public long getId() {
         return id;
@@ -62,4 +66,12 @@ public class TankInfoDTO {
         return this;
     }
 
+    public CategoryEnum getCategoryName() {
+        return categoryName;
+    }
+
+    public TankInfoDTO setCategoryName(CategoryEnum categoryName) {
+        this.categoryName = categoryName;
+        return this;
+    }
 }
