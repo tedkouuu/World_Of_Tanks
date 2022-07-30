@@ -35,7 +35,7 @@ public class EmailService {
 
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-            mimeMessageHelper.setFrom("mobilele@mobilele.com");
+            mimeMessageHelper.setFrom("WorldOfTanks@gmail.com");
             mimeMessageHelper.setTo(userEmail);
             mimeMessageHelper.setSubject(getEmailSubject(preferredLocale));
             mimeMessageHelper.setText(generateMessageContent(preferredLocale, userName), true);
