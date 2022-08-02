@@ -15,6 +15,7 @@ public class OpenAPIConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
                 .info(new Info()
+                        .title("World Of Tanks")
                         .version("1.0.0")
                         .contact(new Contact().name("Teodor Trendafilov")
                                 .email("teodor.trendafilov02@gmail.com"))
