@@ -1,5 +1,6 @@
 package com.example.world_of_tanks.web;
 
+import com.example.world_of_tanks.exceptions.ObjectNotFoundException;
 import com.example.world_of_tanks.models.dto.TankDTO;
 import com.example.world_of_tanks.services.TankService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,12 +34,19 @@ public class TankRestController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "If the book was not found"
+            description = "If the tank was not found"
     )
     @GetMapping("/tank/getCategoryId/{id}")
     public ResponseEntity<TankDTO> getGame(@PathVariable Long id) { // ТРЯБВА МИ НЯКАКВО DTO ,КОЕТО ДА ГО ВЪРНА
 
-        return ResponseEntity.ok(tankService.getTankById(id));
+//        return ResponseEntity.ok(tankService.getTankById(id));
+        TankDTO tankById = tankService.getTankById(id);
+
+        if (tankById == null) {
+            throw new ObjectNotFoundException("Tank was not found!");
+        }
+
+        return ResponseEntity.ok(tankById);
     }
 }
 

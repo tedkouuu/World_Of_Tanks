@@ -241,6 +241,10 @@ public class TankService {
 
         Optional<Tank> tank = this.tankRepository.findById(id);
 
+        if (tank.isEmpty()) {
+            return null;
+        }
+
         Tank realTank = tank.get();
 
         return new TankDTO().setName(realTank.getName())
