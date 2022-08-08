@@ -74,10 +74,11 @@ public class UserService {
         this.userRepository.delete(user.get());
 
     }
+}
 
-    //    МЕТОД ЗА АВТМОМАТИЧЕН LOGIN СЛЕД РЕГИСТРАЦИЯ:
+//    МЕТОД ЗА АВТМОМАТИЧЕН LOGIN СЛЕД РЕГИСТРАЦИЯ:
 
-//        public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
+//        public void login(String username) {
 //
 //        UserEntity newUser = modelMapper.map(userRegisterDTO,UserEntity.class);
 //        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
@@ -107,5 +108,5 @@ public class UserService {
 //                getContext().
 //                setAuthentication(auth);
 //    }
-}
+
 

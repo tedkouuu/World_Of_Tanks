@@ -225,10 +225,16 @@ public class TankService {
 
         for (Tank current : allTanks) {
 
+            Optional<UserEntity> byUsername = userRepository.findByUsername(current.getUser().getUsername());
+
+            UserEntity userEntity = byUsername.get();
+
             TankInfoDTO tankDTO = new TankInfoDTO().setPower(current.getPower())
                     .setCreated(current.getCreated())
                     .setHealth(current.getHealth()).setName(current.getName())
-                    .setCategoryName(current.getCategory().getName());
+                    .setCategoryName(current.getCategory().getName())
+                    .setOwnerUsername(userEntity.getUsername());
+
 
             tanksToShow.add(tankDTO);
 

@@ -21,12 +21,23 @@ public class TankInfoDTO {
 
     private CategoryEnum categoryName;
 
+    private String ownerUsername;
+
     public long getId() {
         return id;
     }
 
     public TankInfoDTO setId(long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getOwnerUsername() {
+        return ownerUsername;
+    }
+
+    public TankInfoDTO setOwnerUsername(String ownerUsername) {
+        this.ownerUsername = ownerUsername;
         return this;
     }
 
