@@ -46,9 +46,9 @@ class UserControllerTest {
         // НЯМАМ IN MEMORY DB, ТАКА ЧЕ ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ СТОЙНОСТИТЕ ЗА USERNAME И PASSWORD
     void testUserRegistration() throws Exception {
         mockMvc.perform(post("/users/register").
-                param("username", "example123"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
-                        param("fullName", "example321"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
-                        param("email", "example@123").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
+                param("username", "velko"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
+                        param("fullName", "velizar"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
+                        param("email", "velko@66").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
                         param("password", "123").
                 param("confirmPassword", "123").
                 param("role", "ADMIN").with(csrf()).
@@ -57,7 +57,7 @@ class UserControllerTest {
 
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/login"));
 
-        verify(mockEmailService).sendRegistrationEmail("example@123", "example321",
+        verify(mockEmailService).sendRegistrationEmail("velko@66", "velizar",
                 Locale.FRENCH);
 
     }
@@ -112,18 +112,18 @@ class UserControllerTest {
     @WithMockUser(roles = {"ADMIN"})
     void testUserDeleteWithAdminRole() throws Exception {
         mockMvc.perform(post("/users/delete").
-                param("username", "Mara321").
+                param("username", "brannko").
                 with(csrf())
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
     }
 
-    @Test // POST MAPPING DELETE USER / ADMIN ROLE
+    @Test // POST MAPPING EDIT USER / ADMIN ROLE
     @WithMockUser(roles = {"ADMIN"})
     void testUserEditWithAdminRole() throws Exception {
         mockMvc.perform(post("/users/edit").
-                param("oldUsername", "tedko6996").
-                param("newUsername", "tedko6969").
-                param("fullName", "teodor_1").
+                param("oldUsername", "Branko90").
+                param("newUsername", "test_user").
+                param("fullName", "sdeefd").
                 param("password", "123").
                 with(csrf())
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));

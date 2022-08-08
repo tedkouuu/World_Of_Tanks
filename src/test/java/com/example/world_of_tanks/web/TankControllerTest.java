@@ -1,11 +1,19 @@
 package com.example.world_of_tanks.web;
 
+import com.example.world_of_tanks.models.dto.AddTankDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -78,13 +86,32 @@ class TankControllerTest {
     }
 
     @Test // POST MAPPING DELETE TANK WITH USER ROLE
+    // НЕ ПИПАЙ -------------------------------------------------------------
     @WithMockUser(roles = {"ADMIN"})
     void testTankDeleteErrorAdminRole() throws Exception {
         mockMvc.perform(post("/tank/delete").
-                        param("name", "example").
+                        param("name", "tedko6969").
                         with(csrf())
                 ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/tank/delete"))
                 .andExpect(flash().attributeExists("deleteTankDTO"))
                 .andExpect(flash().attributeExists("org.springframework.validation.BindingResult.deleteTankDTO"));
+    }
+
+    @Test // POST MAPPING ADD TANK WITH ADMIN ROLE
+    // НЕ ПИПАЙ -------------------------------------------------------------
+    @WithMockUser(roles = {"ADMIN"})
+    void testAddShip() throws Exception {
+
+        mockMvc.perform(post("/tank/add")
+                        .param("name", "toooooooooLongUsername")
+                        .param("power", "1")
+                        .param("health", "4")
+                        .param("date", "2022-08-05")
+                        .param("category", "MEDIUM_TANK")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/tank/add"))
+                .andExpect(flash().attributeExists("addTankDTO"))
+                .andExpect(flash().attributeExists("org.springframework.validation.BindingResult.addTankDTO"));
+
     }
 }

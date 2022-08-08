@@ -56,7 +56,7 @@ public class TankController {
     }
 
     @PostMapping("/tank/add")
-    public String addShip(@Valid AddTankDTO addTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
+    public String addTank(@Valid AddTankDTO addTankDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
 
 
         if (bindingResult.hasErrors()) {
