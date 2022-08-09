@@ -42,6 +42,7 @@ public class SecurityConfiguration {
                 antMatchers("/user/tank/delete").hasRole(UserRoleEnum.USER.name()).
                 antMatchers("/tanks/delete/all").authenticated().
                 antMatchers("/tanks/info", "/tanks/search").permitAll().
+                antMatchers("/maintenance").permitAll().
                 // pages available only for admins
                         antMatchers("/pages/admins", "/tanks/add", "/tank/edit", "/tank/delete", "/users/edit", "/users/delete").hasRole(UserRoleEnum.ADMIN.name()).
                 // all other pages are available for logger in users
