@@ -23,7 +23,7 @@
                         </h3>
                         <div class="mb-1 text-white">Select owned tank</div>
                         <select class="form-select mt-5" aria-label="Default select example"
-                                th:field="*{attackerId}">
+                                th:field="*{attackerId}" th:onchange="changeImgOfTank(this)">
                             <option value="0" selected>My tanks
                             </option>
                             <option th:each="tank : ${ownTanks}" th:value="${tank.getId()}"
