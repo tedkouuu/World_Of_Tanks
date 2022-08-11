@@ -43,6 +43,8 @@ the picture changes
 
 ✔ There is 62% line coverage for the tests
 
+✔ Depending on what category the tank is, he gets bonus damage when attacking
+
 
 
 
