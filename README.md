@@ -1,5 +1,5 @@
 # World_Of_Tanks
-This is my personal project :
+THIS IS MY PERSONAL PROJECT ♛
 
 ● OVERVIEW:
 
