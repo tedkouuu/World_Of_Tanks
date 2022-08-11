@@ -37,6 +37,15 @@ some of the buttons
 ✔ I have a javascript that, through fetch, calls something from the RestController and in this way I can, depending on what category id a tank has
 the picture changes
 
+✔ The Web Application is RESPONSIVE
+
+✔ The user could choose from two roles: ADMIN and USER
+
+✔ There is 62% line coverage for the tests
+
+
+
+
 
 
 
