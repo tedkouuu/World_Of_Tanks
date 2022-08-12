@@ -41,9 +41,11 @@ the picture changes
 
 ✔ The user could choose from two roles: ADMIN and USER
 
-✔ There is 62% line coverage for the tests
+✔ There is 63% line coverage for the tests
 
 ✔ Depending on what category the tank is, he gets bonus damage when attacking
+
+✔ There is both - server and client site validations
 
 
 
