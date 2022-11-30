@@ -9,6 +9,4 @@ function changeImgOfTank(selectNode) {
     fetch('/tank/getCategoryId/' + tankId)
         .then(response => response.text())
         .then(callback);
-
-
 }

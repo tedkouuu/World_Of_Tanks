@@ -28,15 +28,12 @@ public class TankSpecification implements Specification<Tank> {
             );
         }
 
-        // ТЪРСЯ ПО КРЪВ НА ТАНКА / ПО ГОЛЯМО ИЛИ РАВНО НА ЧИСЛОТО, КОЕТО СЪМ НАПИСАЛ
-
         if (searchTankDTO.getHealth() != null) {
             p.getExpressions().add(
                     cb.and(cb.greaterThanOrEqualTo(root.get("health"), searchTankDTO.getHealth()))
             );
         }
 
-        // ТЪРСЯ ПО СИЛА / ПО МАЛКО ИЛИ РАВНО НА ЧИСЛОТО, КОЕТО СЪМ НАПИСАЛ
 
         if (searchTankDTO.getPower() != null) {
             p.getExpressions().add(

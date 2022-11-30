@@ -13,7 +13,6 @@ public class GivingHealthScheduler {
         this.scheduleService = scheduleService;
     }
 
-    // След тежките битки, всеки един танк бива поправен и му се възвръща 100 кръв на всеки 12 часа! :)
     @Scheduled(cron = "0 0 12 * * *")
     public void giveTanksHp() {
 

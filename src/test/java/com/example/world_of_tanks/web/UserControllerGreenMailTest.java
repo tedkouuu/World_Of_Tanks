@@ -55,13 +55,13 @@ public class UserControllerGreenMailTest {
     }
 
     @Test
-    void testRegistration() throws Exception { // ---> ТРЯБВА ВИНАГИ СТОЙНОСТИТЕ НА GreenMailTest ДА СА РАЗЛИЧНИ ОТ ТЕЗИ В UserTest
+    void testRegistration() throws Exception {
 
         mockMvc.perform(post("/users/register").
-                param("username", "simona123"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
-                        param("fullName", "simonaaaa"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
-                        param("email", "simona@123").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
-                        param("password", "123").
+                param("username", "test2user").
+                param("fullName", "test1user").
+                param("email", "testUser@1234").
+                param("password", "123").
                 param("confirmPassword", "123").
                 param("role", "ADMIN").with(csrf()).
                 cookie(new Cookie("lang", Locale.FRENCH.getLanguage()))

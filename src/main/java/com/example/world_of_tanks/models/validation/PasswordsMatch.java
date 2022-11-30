@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE) // ОЗНАЧАВА ЧЕ ЩЕ СЛАГАМ АНОТАЦИЯТА ВЪРХУ ЦЕЛИЯТ КЛАС
+@Target(ElementType.TYPE)
 @Constraint(validatedBy = PasswordsMatchValidator.class)
 public @interface PasswordsMatch {
 

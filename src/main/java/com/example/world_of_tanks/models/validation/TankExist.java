@@ -7,9 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME) // Обяснява че тази анотация трябва да бъде активна RUNTIME
-@Target(ElementType.FIELD) // Казвам че искам да анотирам полета с нея
-@Constraint(validatedBy = TankExistValidator.class) // ТУК ТРЯБВА ДА СИ НАПРАВЯ ВАЛИДАТОР, КОЙТО ДА ДЪРЖИ ЛОГИКАТА
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@Constraint(validatedBy = TankExistValidator.class)
 public @interface TankExist {
 
     String message() default "There is no tank with this name!";

@@ -9,6 +9,7 @@ spring:
     password:
     url: jdbc:mysql://localhost:3306/world_of_tanks?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
     username: root
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -21,7 +22,7 @@ mail:
   host: "localhost"
   port: 1025
   username: "WorldOfTanks@gmail.com"
-  password: ""
+  password: "topsecret"
 
 
 

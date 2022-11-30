@@ -28,7 +28,7 @@ class TankControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test // GET MAPPING EDIT TANK / WITH ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testEditTankPageShown() throws Exception {
         mockMvc.perform(get("/tank/edit"))
@@ -36,7 +36,7 @@ class TankControllerTest {
                 .andExpect(view().name("tank-edit"));
     }
 
-    @Test // GET MAPPING EDIT TANK / WITH ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"USER"})
     void testEditTankWithUserRolePageShown() throws Exception {
         mockMvc.perform(get("/user/role/tank/edit"))
@@ -44,7 +44,7 @@ class TankControllerTest {
                 .andExpect(view().name("user-tank-edit"));
     }
 
-    @Test // GET MAPPING DELETE TANK / WITH ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testDeleteTankWithAdminRolePageShown() throws Exception {
         mockMvc.perform(get("/tank/delete"))
@@ -52,7 +52,7 @@ class TankControllerTest {
                 .andExpect(view().name("tank-delete"));
     }
 
-    @Test // GET MAPPING EDIT TANK / WITH ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"USER"})
     void testDeleteTankWithUserRolePageShown() throws Exception {
         mockMvc.perform(get("/user/tank/delete"))
@@ -60,7 +60,7 @@ class TankControllerTest {
                 .andExpect(view().name("user-role-tank-delete"));
     }
 
-    @Test // GET MAPPING DELETE TANK / WITH USER ROLE
+    @Test
     @WithMockUser(roles = {"USER"})
     void testDeleteAllTanksWithNoMatterTheRolePageShown() throws Exception {
         mockMvc.perform(get("/tanks/delete/all"))
@@ -68,7 +68,7 @@ class TankControllerTest {
                 .andExpect(view().name("delete-all-tanks"));
     }
 
-    @Test // GET MAPPING ADD TANK / WITH NO MATTER ROLE
+    @Test
     @WithMockUser(roles = {"USER"})
     void testAddTankWithNoMatterTheRolePageShown() throws Exception {
         mockMvc.perform(get("/tank/add"))
@@ -77,7 +77,6 @@ class TankControllerTest {
     }
 
     @Test
-        // GET MAPPING TANK INFO / WITH NO MATTER ROLE
     void testTankInfoPageShown() throws Exception {
         mockMvc.perform(get("/tanks/info"))
                 .andExpect(status().isOk())
@@ -85,8 +84,7 @@ class TankControllerTest {
                 .andExpect(model().attributeExists("allTanks"));
     }
 
-    @Test // POST MAPPING DELETE TANK WITH USER ROLE
-    // НЕ ПИПАЙ -------------------------------------------------------------
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testTankDeleteErrorAdminRole() throws Exception {
         mockMvc.perform(post("/tank/delete").
@@ -97,8 +95,7 @@ class TankControllerTest {
                 .andExpect(flash().attributeExists("org.springframework.validation.BindingResult.deleteTankDTO"));
     }
 
-    @Test // POST MAPPING ADD TANK WITH ADMIN ROLE
-    // НЕ ПИПАЙ -------------------------------------------------------------
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testAddShip() throws Exception {
 

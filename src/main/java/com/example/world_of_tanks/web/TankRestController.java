@@ -20,8 +20,6 @@ public class TankRestController {
         this.tankService = tankService;
     }
 
-    // ДОПЪЛНИТЕЛНО ИНФО
-
     @Tag(name = "Get tank by id", description = "Returns the tank details by its id")
     @Parameter(
             name = "id",
@@ -37,9 +35,8 @@ public class TankRestController {
             description = "If the tank was not found"
     )
     @GetMapping("/tank/getCategoryId/{id}")
-    public ResponseEntity<TankDTO> getGame(@PathVariable Long id) { // ТРЯБВА МИ НЯКАКВО DTO ,КОЕТО ДА ГО ВЪРНА
+    public ResponseEntity<TankDTO> getGame(@PathVariable Long id) {
 
-//        return ResponseEntity.ok(tankService.getTankById(id));
         TankDTO tankById = tankService.getTankById(id);
 
         if (tankById == null) {

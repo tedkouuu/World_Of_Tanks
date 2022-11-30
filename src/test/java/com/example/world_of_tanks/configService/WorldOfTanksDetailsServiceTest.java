@@ -21,10 +21,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class WorldOfTanksDetailsServiceTest {
 
-    // ТРЯБВА ДА НАУЧА МОКОВЕТЕ КАК ДА СЕ ДЪРЖАТ
 
     @Mock
-    private UserRepository mockUserRepo; // ТОВА Е КУХО РЕПОЗИТОРИ, ВСИЧКИТЕ МУ МЕТОДИ ВРЪЩАТ NULL ИЛИ OPTIONAL<NULL>
+    private UserRepository mockUserRepo;
 
     private WorldOfTanksDetailsService toTest;
 
@@ -56,7 +55,7 @@ public class WorldOfTanksDetailsServiceTest {
 
 
         // ASSERT
-        Assertions.assertEquals(testUserEntity.getUsername(), userDetails.getUsername()); // ПЪРВО Е EXPECTED, ПОСЛЕ Е ACTUAL
+        Assertions.assertEquals(testUserEntity.getUsername(), userDetails.getUsername());
 
 
         var authorities = userDetails.getAuthorities();

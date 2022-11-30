@@ -40,16 +40,12 @@ class UserControllerTest {
     }
 
     @Test
-        // POST MAPPING REGISTER
-
-        // С ТОЗИ ТЕСТ, ТЕСТВАМ ДАЛИ РЕАЛНО СЕ ИЗПЪЛНЯВА .sendRegistrationEmail
-        // НЯМАМ IN MEMORY DB, ТАКА ЧЕ ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ СТОЙНОСТИТЕ ЗА USERNAME И PASSWORD
     void testUserRegistration() throws Exception {
         mockMvc.perform(post("/users/register").
-                param("username", "velko"). // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ USERNAME, НЯМА IN-MEMORY DB
-                        param("fullName", "velizar"). // ТОВА ГО СЛАГАМ НА МЯСТОТО НА userName
-                        param("email", "velko@66").  // ВСЕКИ ПЪТ ТРЯБВА ДА ПРОМЕНЯМ EMAIL
-                        param("password", "123").
+                param("username", "test8user").
+                param("fullName", "fullnametest").
+                param("email", "email@test").
+                param("password", "123").
                 param("confirmPassword", "123").
                 param("role", "ADMIN").with(csrf()).
                 cookie(new Cookie("lang", Locale.FRENCH.getLanguage()))
@@ -57,23 +53,19 @@ class UserControllerTest {
 
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/login"));
 
-        verify(mockEmailService).sendRegistrationEmail("velko@66", "velizar",
+        verify(mockEmailService).sendRegistrationEmail("email@test", "fullnametest",
                 Locale.FRENCH);
 
     }
 
-
     @Test
-        // GET MAPPING LOGIN
     void testLoginPageShown() throws Exception {
         mockMvc.perform(get("/users/login"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"));
     }
 
-
     @Test
-        // POST MAPPING LOGIN
     void testUserLogin() throws Exception {
         mockMvc.perform(post("/users/login").
                 param("username", "tedkou").
@@ -82,17 +74,16 @@ class UserControllerTest {
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
     }
 
-    // GET MAPPING EDIT USER / ADMIN ROLE
+
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    // ТРЯБВА ДА РАЗБЕРА КАК ДА ИЗЛЪЖА ИДЕТО ЧЕ ТОЗИ USER ИМА СЕСИЯ
     void testEditPageShown() throws Exception {
         mockMvc.perform(get("/users/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user-edit"));
     }
 
-    @Test // GET NAPPING DELETE USERS / ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testUsersDeletePageShown() throws Exception {
         mockMvc.perform(get("/users/delete"))
@@ -100,7 +91,6 @@ class UserControllerTest {
                 .andExpect(view().name("users-delete"));
     }
 
-    // GET MAPPING TANK INFO
     @Test
     void testTankInfoPageShown() throws Exception {
         mockMvc.perform(get("/tanks/info"))
@@ -108,22 +98,21 @@ class UserControllerTest {
                 .andExpect(view().name("tanks-info"));
     }
 
-    @Test // POST MAPPING DELETE USER / ADMIN ROLE
-    @WithMockUser(roles = {"ADMIN"})
+    @Test
     void testUserDeleteWithAdminRole() throws Exception {
         mockMvc.perform(post("/users/delete").
-                param("username", "brannko").
+                param("username", "exaaaam").
                 with(csrf())
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));
     }
 
-    @Test // POST MAPPING EDIT USER / ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testUserEditWithAdminRole() throws Exception {
         mockMvc.perform(post("/users/edit").
-                param("oldUsername", "Branko90").
-                param("newUsername", "test_user").
-                param("fullName", "sdeefd").
+                param("oldUsername", "krisi").
+                param("newUsername", "examtest9").
+                param("fullName", "noname").
                 param("password", "123").
                 with(csrf())
         ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/users/home"));

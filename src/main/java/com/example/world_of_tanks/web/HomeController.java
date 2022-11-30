@@ -31,11 +31,7 @@ public class HomeController {
     @GetMapping("/users/home")
     public String getHome(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 
-        // Зареждам корабите на текущо-логнатият потребител
-
         List<TankDTO> ownTanks = this.tankService.getTanksOwnedBy(userDetails.getUsername());
-
-        //Зареждам корабите на всички останали потребители
 
         List<TankDTO> enemyTanks = this.tankService.getTanksOwnedByNot(userDetails.getUsername());
 

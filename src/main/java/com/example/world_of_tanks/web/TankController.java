@@ -200,15 +200,4 @@ public class TankController {
 
         return "tank-search";
     }
-
-
-// ВАЖНО!!! TODO
-//    @GetMapping("/tank/getCategoryId")
-//    @ResponseBody
-//    public String getCategoryId(int tankId) {
-//        // this.tankService.find
-//        return "33";
-//    }
-
-
 }

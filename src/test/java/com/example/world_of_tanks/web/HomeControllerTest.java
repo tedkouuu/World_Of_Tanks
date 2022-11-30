@@ -18,7 +18,7 @@ class HomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test // GET MAPPING HOME  PAGE / WITH ADMIN ROLE
+    @Test
     @WithMockUser(roles = {"ADMIN"})
     void testHomePageShown() throws Exception {
         mockMvc.perform(get("/users/home"))
