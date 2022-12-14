@@ -71,7 +71,8 @@ form.main-form {
 
 #h1home {
 
-    background-color: white;
+    background-color: black;
+    color: white;
     opacity: 0.9;
     border-radius: 5px;
     text-align: center;
@@ -87,8 +88,12 @@ form.main-form {
 
 .customH3 {
     text-align: center;
+}
+
+a {
     color: white;
 }
+
 
 nav.navbar {
     background-color: black;
@@ -100,3 +105,19 @@ nav.navbar {
     margin-right: auto;
     width: 50%;
 }
+
+a:hover {
+    color: lightgray;
+}
+
+h1 {
+    font-family: "Montserrat-Black";
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+#welcome-text {
+    padding-left: 225px;
+}
+
+
