@@ -19,6 +19,8 @@ My app is written in the Spring framework, and I've used the best practices I've
 
 ✔ Smtp Server, for local email testing
 
+✔ Docker used for running the Smtp Server
+
 ✔ Exception handling
 
 ✔ Logging Interceptor
