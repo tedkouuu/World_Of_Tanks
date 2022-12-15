@@ -13,29 +13,21 @@ My app is written in the Spring framework, and I've used the best practices I've
 
 ✔ Spring Security
 
-✔ I use model mapper
+✔ Model mapper used
 
-✔ I have a localization interceptor, I can change the language of
-some of the buttons
+✔ Localization interceptor
 
-✔ I have an smtp server, for local email testing, I use DOCKER to run the server
+✔ Smtp Server, for local email testing
 
-✔ I have exception handling, for REST
+✔ Exception handling
 
-✔ I have Logging Interceptor, it shows me some simple logs
+✔ Logging Interceptor
 
-✔ I have validations for every single form
+✔ Validation for forms
 
-✔ I have a TankSpecification with which I am not obliged to fill in all the fields to find a tank, I can optionally fill in (I USE IT FOR THE SEARCH FUNCTIONALITY)
+✔ Scheduler
 
-✔ I have a Scheduler that uses CRON, every 12 hours if I have tanks I get 100 blood added
-
-✔ I have a Maintance Interceptor which between 23 and 00 does not allow me to use the application
-
-✔ I have overridden pages like 404 and 500 so the user doesn't get ugly errors
-
-✔ I have a javascript that, through fetch, calls something from the RestController and in this way I can, depending on what category id a tank has
-the picture changes
+✔ Maintance Interceptor
 
 ✔ The Web Application is RESPONSIVE
 
@@ -45,7 +37,7 @@ the picture changes
 
 ✔ Depending on what category the tank is, he gets bonus damage when attacking
 
-✔ There is both - server and client site validations
+✔ Server and Client site validations
 
 
 
