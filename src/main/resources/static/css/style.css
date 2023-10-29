@@ -76,8 +76,7 @@ form.main-form {
     opacity: 0.9;
     border-radius: 5px;
     text-align: center;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
 }
 
 .customSpan {
@@ -111,7 +110,7 @@ a:hover {
 }
 
 h1 {
-    font-family: "Montserrat-Black";
+    font-family: "Montserrat-Black", serif;
     font-size: 3rem;
     line-height: 1.5;
 }
@@ -119,5 +118,29 @@ h1 {
 #welcome-text {
     padding-left: 225px;
 }
+
+#searchForm {
+    margin-left: 80px;
+    margin-bottom: 200px;
+}
+
+#searchH2 {
+    margin-bottom: 100px;
+}
+
+#languageNav{
+    margin-left: 9px;
+    margin-top: 7px;
+}
+
+#searchIcon{
+    width: 20px;
+}
+
+
+
+
+
+
 
 

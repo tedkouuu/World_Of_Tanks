@@ -7,7 +7,7 @@
 <body class="body-main">
 <header th:include="~{fragments/navigation}"></header>
 <main role="main">
-    <div class="jumbotron">
+    <div class="jumbotron home">
         <h1 id="h1home" class="text-center p-5 text-blue font-weight-bold">Welcome to the battlefield, choose your
             tank</h1>
         <form th:action="@{/tanks/battle}"
@@ -63,12 +63,6 @@
             </span>
         </form>
     </div>
-
-    <h3 class="customH3">
-        <a th:href="@{/tanks/info}">TANKS INFO</a>
-    </h3>
-
-
 </main>
 <th:block th:replace="~{fragments/footer}"/>
 </body>
