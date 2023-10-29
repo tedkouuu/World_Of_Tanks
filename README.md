@@ -1,15 +1,10 @@
-# World_Of_Tanks
-THIS IS MY FIRST PROJECT ♛
+# World of Tanks
 
-● OVERVIEW:
+The purpose of this application is to play the game and have fun
 
-I made this project so that I could pass the Softuni - Spring Advanced course.
+## Features
 
-My app is written in the Spring framework, and I've used the best practices I've learned at Softuni!
-
-● FEATURES: 
-
-✔ MySQL database, JPA connection implemented
+MySQL database, JPA connection implemented
 
 ✔ Spring Security
 
@@ -41,9 +36,13 @@ My app is written in the Spring framework, and I've used the best practices I've
 
 ✔ Server and Client site validations
 
+## Usage
 
+Need to run mailhog, so the reigistration can be done. I used Docker for installing and running the Smtp Server
 
+## Authors
 
+- Teodor Trendafilov
 
 
 
