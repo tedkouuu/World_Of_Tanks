@@ -6,7 +6,6 @@ import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-// С тази конфигурация мога да дам допълнителни неща над default-ната swagger html страница за описание на REST API :)
 
 @Configuration
 public class OpenAPIConfig {

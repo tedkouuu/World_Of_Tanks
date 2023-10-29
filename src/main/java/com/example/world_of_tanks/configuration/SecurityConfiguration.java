@@ -16,11 +16,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfiguration {
 
-    //Here we have to expose 3 things:
-    // 1. PasswordEncoder
-    // 2. SecurityFilterChain
-    // 3. UserDetailsService
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new Pbkdf2PasswordEncoder();

@@ -76,37 +76,38 @@ public class UserService {
     }
 }
 
-//    МЕТОД ЗА АВТМОМАТИЧЕН LOGIN СЛЕД РЕГИСТРАЦИЯ:
+/*
+        Automatic login
 
-//        public void login(String username) {
-//
-//        UserEntity newUser = modelMapper.map(userRegisterDTO,UserEntity.class);
-//        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        public void login(String username) {
 
-//        UserRoleEntity role = this.userRoleRepository.findByUserRole(userRoleEnum);
-//
-//        user.setRoles(List.of(role));
-//
-//        this.userRepository.save(user);
-//
-//        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
-//    }
-//
-//
-//    private void login(UserEntity userEntity) {
-//        UserDetails userDetails =
-//                userDetailsService.loadUserByUsername(userEntity.getUsername());
-//
-//        Authentication auth =
-//                new UsernamePasswordAuthenticationToken(
-//                        userDetails,
-//                        userDetails.getPassword(),
-//                        userDetails.getAuthorities()
-//                );
-//
-//        SecurityContextHolder.
-//                getContext().
-//                setAuthentication(auth);
-//    }
+        UserEntity newUser = modelMapper.map(userRegisterDTO,UserEntity.class);
+        newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+
+        UserRoleEntity role = this.userRoleRepository.findByUserRole(userRoleEnum);
+
+        user.setRoles(List.of(role));
+
+        this.userRepository.save(user);
+
+        emailService.sendRegistrationEmail(registerDTO.getEmail(), registerDTO.getFullName());
+    }
+
+
+    private void login(UserEntity userEntity) {
+        UserDetails userDetails =
+                userDetailsService.loadUserByUsername(userEntity.getUsername());
+
+        Authentication auth =
+                new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        userDetails.getPassword(),
+                        userDetails.getAuthorities()
+                );
+
+        SecurityContextHolder.
+                getContext().
+                setAuthentication(auth);
+*/
 
 

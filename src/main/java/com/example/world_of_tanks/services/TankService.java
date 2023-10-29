@@ -47,16 +47,7 @@ public class TankService {
 
         tankModelMapper.setCategory(category);
 
-        // Ако model mapper не работи, мога винаги да си ползвам сетъри!
-
-//        Tank tankToSave = new Tank().
-//                setHealth(addTankDTO.getHealth()).
-//                setPower(addTankDTO.getPower()).setName(addTankDTO.getName())
-//                .setCreated(addTankDTO.getCreated());
-//        tankToSave.setCategory(category).setUser(user);
-
         this.tankRepository.save(tankModelMapper);
-
 
     }
 
