@@ -7,7 +7,7 @@ I made this project so that I could pass the Softuni - Spring Advanced course.
 
 My app is written in the Spring framework, and I've used the best practices I've learned at Softuni!
 
-● FEATURES:
+● FEATURES: 
 
 ✔ MySQL database, JPA connection implemented
 
@@ -40,3 +40,11 @@ My app is written in the Spring framework, and I've used the best practices I've
 ✔ Depending on what category the tank is, he gets bonus damage when attacking
 
 ✔ Server and Client site validations
+
+
+
+
+
+
+
+
